@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.dbclient-js": "javascript",
+        "*.embeddedhtml": "html",
+        "*.ejs": "html",
+        "vector": "cpp",
+        "random": "cpp",
+        "thread": "cpp"
+    }
+}
