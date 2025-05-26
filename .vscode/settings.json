@@ -6,6 +6,8 @@
         "vector": "cpp",
         "random": "cpp",
         "thread": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "xstring": "cpp",
+        "iostream": "cpp"
     }
 }

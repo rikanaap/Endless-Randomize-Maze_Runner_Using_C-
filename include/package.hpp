@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 #include <sstream>
-using namespace std;
 
 #ifdef _WIN32
     #include <windows.h>
