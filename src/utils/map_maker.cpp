@@ -26,16 +26,16 @@ vector<vector<char>> createMaze(const string& key) {
     auto positions = split(parts[1], '_');
     if (positions.size() != 2) throw invalid_argument("Start/End must have 2 positions");
 
-    auto [sy, sx] = parseCoord(positions[0]);
-    auto [ey, ex] = parseCoord(positions[1]);
+    // auto [sy, sx] = parseCoord(positions[0]);
+    // auto [ey, ex] = parseCoord(positions[1]);
 
-    maze[sy][sx] = 'A'; // Start
-    maze[ey][ex] = 'E'; // End
+    // maze[sy][sx] = 'A'; // Start
+    // maze[ey][ex] = 'E'; // End
 
-    // Part 2: Enemy
-    auto [eym, exm] = parseCoord(parts[2]);
-    if (maze[eym][exm] == 'A' || maze[eym][exm] == 'B') maze[eym][exm] = 'S';
-    else maze[eym][exm] = 'S';
+    // // Part 2: Enemy
+    // auto [eym, exm] = parseCoord(parts[2]);
+    // if (maze[eym][exm] == 'A' || maze[eym][exm] == 'B') maze[eym][exm] = 'S';
+    // else maze[eym][exm] = 'S';
 
     return maze;
 }
