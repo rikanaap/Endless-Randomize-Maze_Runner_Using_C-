@@ -1,0 +1,14 @@
+{
+    "age": 25,
+    "enemy": {
+        "1": {
+            "coordinate": "1,2|1,1|1,3|"
+        },
+        "2": {
+            "coordinate": "1,2|1,1|1,3|"
+        }
+    },
+    "is_active": true,
+    "name": "Alice",
+    "user_coordinate": "1,3|1,2|1,1|2,1|2,2"
+}
