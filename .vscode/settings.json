@@ -5,6 +5,7 @@
         "*.ejs": "html",
         "vector": "cpp",
         "random": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "utility": "cpp"
     }
 }
