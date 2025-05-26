@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude
 
 # Target
-TARGET = clinicApp
+TARGET = mazeRunner
 
 # Source structure
 SRCDIRS := src/design src/utils src/var
