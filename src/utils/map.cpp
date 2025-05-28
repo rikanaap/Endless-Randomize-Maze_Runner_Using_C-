@@ -1,47 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <queue>
-#include <algorithm>
-#include <cstdlib>
-#include <conio.h>
-
-using namespace std;
-
-struct Vertex
-{
-    int x, y;
-    Vertex *up = nullptr;
-    Vertex *down = nullptr;
-    Vertex *left = nullptr;
-    Vertex *right = nullptr;
-
-    int weightUp = -1;
-    int weightDown = -1;
-    int weightLeft = -1;
-    int weightRight = -1;
-
-    bool visited = false;
-    bool connected = false; // untuk flood fill
-};
-
-int randomInt(int min, int max)
-{
-    return rand() % (max - min + 1) + min;
-}
-
-struct Dir
-{
-    int dx, dy;
-    string name;
-};
-
-vector<Dir> directions = {
-    {-1, 0, "up"},
-    {1, 0, "down"},
-    {0, -1, "left"},
-    {0, 1, "right"}};
+#include "map.hpp"
+#include "utils.hpp"
 
 vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
 {
@@ -297,7 +255,7 @@ void updateWeightsByCoordinates(vector<vector<Vertex *>> &map, int rows, int col
     }
 }
 
-void printStylizedEmojiMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Vertex *start, Vertex *end)
+void printMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Vertex *start, Vertex *end)
 {
     int rows = map.size();
     int cols = map[0].size();
@@ -409,91 +367,4 @@ pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &ma
         }
     } while (start == nullptr || end == nullptr);
     return {start, end};
-}
-
-void movePlayerUp(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
-{
-    Vertex *v = map[currentPos.first][currentPos.second];
-    if (v->up && v->weightUp > 0)
-        currentPos.first -= 1;
-}
-
-void movePlayerDown(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
-{
-    Vertex *v = map[currentPos.first][currentPos.second];
-    if (v->down && v->weightDown > 0)
-        currentPos.first += 1;
-}
-
-void movePlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
-{
-    Vertex *v = map[currentPos.first][currentPos.second];
-    if (v->left && v->weightLeft > 0)
-        currentPos.second -= 1;
-}
-
-void movePlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
-{
-    Vertex *v = map[currentPos.first][currentPos.second];
-    if (v->right && v->weightRight > 0)
-        currentPos.second += 1;
-}
-
-void controlPlayerWithKeyboard(vector<vector<Vertex *>> &map, pair<int, int> &currentPos, Vertex *start, Vertex *end)
-{
-    char input;
-    while (true)
-    {
-        cout << "\nMove with [i: up, k: down, j: left, l: right], [q: quit]: ";
-        char input = getChar();
-        input = tolower(input);
-
-        switch (input)
-        {
-        case 'i':
-            movePlayerUp(map, currentPos);
-            break;
-        case 'k':
-            movePlayerDown(map, currentPos);
-            break;
-        case 'j':
-            movePlayerLeft(map, currentPos);
-            break;
-        case 'l':
-            movePlayerRight(map, currentPos);
-            break;
-        case 'q':
-            cout << "Exiting movement.\n";
-            return;
-        default:
-            cout << "Invalid input.\n";
-        }
-
-        cout << currentPos.first << " | " << currentPos.second << endl;
-        clearScreen();
-        printStylizedEmojiMap(map, currentPos, start, end);
-    }
-}
-
-pair<int, int> currentPos; // (x, y) of player
-int main()
-{
-    srand(time(0));
-    int rows = 5, cols = 5;
-
-    auto map = initializeVertexMap(rows, cols);
-    addNoise(map, rows, cols, 17);
-
-    auto [start, end] = getRandomStartAndEnd(map, rows, cols);
-    currentPos = {start->x, start->y}; // Set initial player position
-
-    createPath(start, end, map, rows, cols);
-    markConnected(start);
-    connectUnreachableVertices(map, rows, cols);
-    updateWeightsByCoordinates(map, rows, cols);
-
-    printStylizedEmojiMap(map, currentPos, start, end);
-    controlPlayerWithKeyboard(map, currentPos, start, end);
-
-    return 0;
 }

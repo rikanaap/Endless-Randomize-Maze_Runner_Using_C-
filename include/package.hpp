@@ -5,9 +5,13 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
+#include <queue>
+#include <algorithm>
+#include <cstdlib>
+#include <conio.h>
 
-#ifdef _WIN32
-    #include <windows.h>
-#endif
+using namespace std;
 
 #endif

@@ -1,6 +1,7 @@
 #include "package.hpp"
 #include "utils.hpp"
 #include "design.hpp"
+#include "env.hpp"
 
 int main()
 {
@@ -28,11 +29,10 @@ int main()
 
     // // Print the full JSON
     // jm.print();
+    // menuUtama();
 
-    #ifdef _WIN32
-        SetConsoleOutputCP(CP_UTF8);
-    #endif
-    menuUtama();
+    srand(time(0));
+    auto map = init
 
-    return 0;
+        return 0;
 }
