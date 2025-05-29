@@ -1,5 +1,6 @@
 #include "map.hpp"
 #include "utils.hpp"
+#include "player.hpp"
 
 vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
 {
@@ -255,14 +256,14 @@ void updateWeightsByCoordinates(vector<vector<Vertex *>> &map, int rows, int col
     }
 }
 
-void printMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Vertex *start, Vertex *end)
+void printMap(const vector<vector<Vertex *>> &map)
 {
     int rows = map.size();
     int cols = map[0].size();
 
     int visRows = rows * 2 - 1;
     int visCols = cols * 4 - 1;
-    vector<vector<string>> visual(visRows, vector<string>(visCols, "⬛"));
+    vector<vector<string>> visual(visRows, vector<string>(visCols, "   "));
 
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
@@ -272,15 +273,15 @@ void printMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Ve
             int vj = j * 4;
 
             // Default node
-            visual[vi][vj] = "🟨";
+            visual[vi][vj] = " = ";
 
             // Start & End
-            if ((i == start->x && j == start->y) || (i == end->x && j == end->y))
-                visual[vi][vj] = "🟥";
+            if ((i == start_v->x && j == start_v->y) || (i == end_v->x && j == end_v->y))
+                visual[vi][vj] = " + ";
 
             // Player position
             if (i == currentPos.first && j == currentPos.second)
-                visual[vi][vj] = "🙂‍";
+                visual[vi][vj] = " S ";
 
             if (v->weightRight > 0)
             {
@@ -288,7 +289,7 @@ void printMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Ve
                 {
                     int pos = vj + w + 1;
                     if (pos < visCols)
-                        visual[vi][pos] = v->right ? "🟩" : "⬜";
+                        visual[vi][pos] = v->right ? " - " : " - ";
                 }
             }
 
@@ -298,7 +299,7 @@ void printMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Ve
                 {
                     int pos = vi + w + 1;
                     if (pos < visRows)
-                        visual[pos][vj] = v->down ? "🟩" : "⬜";
+                        visual[pos][vj] = v->down ? " - " : " - ";
                 }
             }
         }
@@ -314,9 +315,9 @@ void printMap(const vector<vector<Vertex *>> &map, pair<int, int> currentPos, Ve
 void printAllVertexConnections(const vector<vector<Vertex *>> &map)
 {
     cout << "=== Vertex Connection Details ===\n";
-    for (int i = 0; i < map.size(); ++i)
+    for (size_t i = 0; i < map.size(); ++i)
     {
-        for (int j = 0; j < map[0].size(); ++j)
+        for (size_t j = 0; j < map[0].size(); ++j)
         {
             Vertex *v = map[i][j];
             cout << "Vertex (" << v->x << ", " << v->y << "):\n";
@@ -352,8 +353,6 @@ void printAllVertexConnections(const vector<vector<Vertex *>> &map)
 
 pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &map, int rows, int cols)
 {
-    Vertex *start = nullptr;
-    Vertex *end = nullptr;
     do
     {
         int sx = randomInt(0, rows - 1);
@@ -362,9 +361,28 @@ pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &ma
         int ey = randomInt(0, cols - 1);
         if (sx != ex || sy != ey)
         {
-            start = map[sx][sy];
-            end = map[ex][ey];
+            start_v = map[sx][sy];
+            end_v = map[ex][ey];
         }
-    } while (start == nullptr || end == nullptr);
-    return {start, end};
+    } while (start_v == nullptr || end_v == nullptr);
+    return {start_v, end_v};
+}
+
+vector<vector<Vertex *>> generateMap(int rows, int cols, int noise)
+{
+    srand(time(0));
+    auto map = initializeVertexMap(rows, cols);
+    addNoise(map, rows, cols, noise);
+
+    auto [start, end] = getRandomStartAndEnd(map, rows, cols);
+    currentPos = {start->x, start->y};
+
+    createPath(start, end, map, rows, cols);
+    markConnected(start);
+    connectUnreachableVertices(map, rows, cols);
+    updateWeightsByCoordinates(map, rows, cols);
+
+    printMap(map);
+
+    return map;
 }

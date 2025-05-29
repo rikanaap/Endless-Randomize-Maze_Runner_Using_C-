@@ -30,38 +30,23 @@ void movePlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
         currentPos.second += 1;
 }
 
-void controlPlayerWithKeyboard(vector<vector<Vertex *>> &map, pair<int, int> &currentPos, Vertex *start, Vertex *end)
+void controlPlayer(vector<vector<Vertex *>> &map, char input)
 {
-    char input;
-    while (true)
+    switch (input)
     {
-        cout << "\nMove with [i: up, k: down, j: left, l: right], [q: quit]: ";
-        char input = getChar();
-        input = tolower(input);
-
-        switch (input)
-        {
-        case 'i':
-            movePlayerUp(map, currentPos);
-            break;
-        case 'k':
-            movePlayerDown(map, currentPos);
-            break;
-        case 'j':
-            movePlayerLeft(map, currentPos);
-            break;
-        case 'l':
-            movePlayerRight(map, currentPos);
-            break;
-        case 'q':
-            cout << "Exiting movement.\n";
-            return;
-        default:
-            cout << "Invalid input.\n";
-        }
-
-        cout << currentPos.first << " | " << currentPos.second << endl;
-        clearScreen();
-        printMap(map, currentPos, start, end);
+    case 'i':
+        movePlayerUp(map, currentPos);
+        break;
+    case 'k':
+        movePlayerDown(map, currentPos);
+        break;
+    case 'j':
+        movePlayerLeft(map, currentPos);
+        break;
+    case 'l':
+        movePlayerRight(map, currentPos);
+        break;
     }
+    clearScreen();
+    printMap(map);
 }

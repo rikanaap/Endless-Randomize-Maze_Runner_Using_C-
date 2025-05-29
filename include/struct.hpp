@@ -19,6 +19,11 @@ struct Vertex
     bool connected = false; // untuk flood fill
 };
 
+struct Map {
+    vector<vector<Vertex*>> map;
+    Vertex* start, end;
+};
+
 struct Dir
 {
     int dx, dy;

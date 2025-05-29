@@ -31,8 +31,6 @@ int main()
     // jm.print();
     // menuUtama();
 
-    srand(time(0));
-    auto map = init
-
-        return 0;
+    
+    runMap(10, 10);
 }
