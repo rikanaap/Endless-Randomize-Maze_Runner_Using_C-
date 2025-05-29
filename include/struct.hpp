@@ -17,6 +17,8 @@ struct Vertex
 
     bool visited = false;
     bool connected = false; // untuk flood fill
+    
+    bool shoot = false;
 };
 
 struct Map {
@@ -29,5 +31,6 @@ struct Dir
     int dx, dy;
     string name;
 };
+
 
 #endif

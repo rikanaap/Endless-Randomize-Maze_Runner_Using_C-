@@ -30,6 +30,16 @@ void movePlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
         currentPos.second += 1;
 }
 
+void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position)
+{
+    Vertex *v = map[position.first][position.second];
+    if (v->up && v->weightUp > 0){
+        v->shoot = true;
+         shootPlayerUp(map, {v->up->x, v->up->y});
+        
+    }
+}
+
 void controlPlayer(vector<vector<Vertex *>> &map, char input)
 {
     switch (input)
@@ -45,8 +55,12 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
         break;
     case 'l':
         movePlayerRight(map, currentPos);
+        break; 
+    case 'w':
+        shootPlayerUp(map,currentPos);
         break;
     }
+   
     clearScreen();
     printMap(map);
 }

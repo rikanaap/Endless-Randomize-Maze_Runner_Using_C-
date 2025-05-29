@@ -302,6 +302,11 @@ void printMap(const vector<vector<Vertex *>> &map)
                         visual[pos][vj] = v->down ? " - " : " - ";
                 }
             }
+            if (v->shoot == true)
+            {
+                 visual[vi][vj] = " t ";
+            }
+            
         }
 
     for (auto &row : visual)
