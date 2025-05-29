@@ -299,7 +299,7 @@ void printMap(const vector<vector<Vertex *>> &map)
                 {
                     int pos = vi + w + 1;
                     if (pos < visRows)
-                        visual[pos][vj] = v->down ? " - " : " - ";
+                        visual[pos][vj] = v->down ? " | " : " | ";
                 }
             }
             if (v->shoot == true)

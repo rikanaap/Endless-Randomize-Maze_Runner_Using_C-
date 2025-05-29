@@ -30,12 +30,12 @@ void movePlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
         currentPos.second += 1;
 }
 
-void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position)
+void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position, bool first=true)
 {
     Vertex *v = map[position.first][position.second];
+    if (!first) v->shoot = true;
     if (v->up && v->weightUp > 0){
-        v->shoot = true;
-         shootPlayerUp(map, {v->up->x, v->up->y});
+         shootPlayerUp(map, {v->up->x, v->up->y}, false);
         
     }
 }
