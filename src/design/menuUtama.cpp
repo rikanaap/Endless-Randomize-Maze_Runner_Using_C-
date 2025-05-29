@@ -24,7 +24,7 @@ void menuUtama()
         {
             case 1:
                 cout << "\n Memulai permainan...\n";
-                runMap(5, 5);
+                menuLevel();
                 clearScreen();
                 break;
             case 2:

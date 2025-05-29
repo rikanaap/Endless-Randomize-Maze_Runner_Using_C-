@@ -3,5 +3,6 @@
 
 void menuUtama();
 void runMap(int rows, int cols);
+void menuLevel();
 
 #endif
