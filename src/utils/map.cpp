@@ -159,7 +159,7 @@ void markConnected(Vertex *start)
         {
             if (nbr && w > 0 && !nbr->connected)
             {
-                nbr->connected = true;
+                nbr->connected = true; 
                 q.push(nbr);
             }
         }

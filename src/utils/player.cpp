@@ -54,6 +54,7 @@ void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position, bool 
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
+    removeEnemy(v);
     printMap(map);
     clearScreen();
     v->shoot = false;
@@ -67,6 +68,7 @@ void shootPlayerDown(vector<vector<Vertex *>> &map, pair<int, int> &position, bo
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
+    removeEnemy(v);
     printMap(map);
     clearScreen();
     v->shoot = false;
@@ -80,6 +82,7 @@ void shootPlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> &position, bo
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
+    removeEnemy(v);
     printMap(map);
     clearScreen();
     v->shoot = false;
@@ -93,12 +96,17 @@ void shootPlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &position, b
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
+    removeEnemy(v);
     printMap(map);
     clearScreen();
     if (v->up && v->weightRight > 0)
     {
         shootPlayerUp(map, {v->up->x, v->up->y}, false);
     }
+}
+
+void removeEnemy( Vertex *v){
+     if (v->x == enemyPos.first && v->y == enemyPos.second) enemyPos  = {-1,-1};
 }
 
 int countRapidSpacePresses() {
