@@ -7,7 +7,8 @@ void menuUtama()
 {
     int pilihan;
 
-    while (true) {
+    while (true)
+    {
         cout << "=========================================================" << endl;
         cout << "                 MAZE RUNNER - MENU UTAMA                " << endl;
         cout << "=========================================================" << endl;
@@ -20,24 +21,24 @@ void menuUtama()
         cin.clear();
         cin >> pilihan;
 
-        switch(pilihan)
+        switch (pilihan)
         {
-            case 1:
-                cout << "\n Memulai permainan...\n";
-                menuLevel();
-                clearScreen();
-                break;
-            case 2:
-                cout << "\n Menampilkan riwayat peta...\n";
-                break;
-            case 3:
-                cout << "\n Terima kasih telah bermain. Sampai jumpa!\n";
-                exit(0);
-                break;
-            default:
-                cout << "\n Pilihan tidak valid. Silakan pilih antara 1 - 3.\n";
-                break;
+        case 1:
+            cout << "\n Memulai permainan...\n";
+            clearScreen();
+            menuLevel();
+            break;
+        case 2:
+            cout << "\n Menampilkan riwayat peta...\n";
+            break;
+        case 3:
+            cout << "\n Terima kasih telah bermain. Sampai jumpa!\n";
+            exit(0);
+            break;
+        default:
+            cout << "\n Pilihan tidak valid. Silakan pilih antara 1 - 3.\n";
+            break;
         }
-    cout << endl;
+        cout << endl;
     }
 }

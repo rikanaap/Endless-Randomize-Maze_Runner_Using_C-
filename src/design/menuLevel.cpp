@@ -1,10 +1,11 @@
 #include "package.hpp"
 #include "design.hpp"
+#include "utils.hpp"
 
 void menuLevel()
 {
     cout << "====================" << endl;
-    cout << "  Level Selection   " << endl;
+    cout << "    Pilih Level   " << endl;
     cout << "====================" << endl;
     cout << "1. Level 1" << endl;
     cout << "2. Level 2" << endl;
@@ -19,7 +20,7 @@ void menuLevel()
         cout << "Maaf level yang dipilih tidak tersedia. Pilih ulang level" << endl;
         return;
     }
-    
+    clearScreen();
     switch (choice) {
         case 1:
             runMap(3,3); // Adjusting rows and cols based on level

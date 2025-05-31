@@ -4,17 +4,18 @@
 
 void runMap(int rows, int cols)
 {
-    cout << "MAKAN NASI" << endl;
     auto map = generateMap(rows, cols, 17);
     char input;
     while (true)
     {
-        cout << "\nMove with [i: up, k: down, j: left, l: right], [q: quit]: ";
+        cout << "\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
         input = getChar();
         input = tolower(input);
-        if(input == 'q') return;
+        if(input == 'q') {
+            clearScreen();
+            return;
+        }
 
         controlPlayer(map, input);
     }
-    
 }

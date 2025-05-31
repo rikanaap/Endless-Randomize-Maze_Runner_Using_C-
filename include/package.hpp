@@ -11,7 +11,11 @@
 #include <algorithm>
 #include <cstdlib>
 #include <conio.h>
+#include <ctime>
+#include <chrono>
+#include <thread>
 
 using namespace std;
+using namespace std::chrono;
 
 #endif

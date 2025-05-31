@@ -1,7 +1,8 @@
-#ifndef DESIGN_HPP
-#define DESIGN_HPP
-#include "package.hpp"
+#ifndef ENV_HPP
+#define ENV_HPP
 
-string GAME_NAME = "Dikejer Bobotoh";
+const string GAME_NAME = "Dikejer Bobotoh";
+const int MAX_SPACE_PRESSES = 8;
+const int TIME_THRESHOLD_MS = 300; 
 
 #endif

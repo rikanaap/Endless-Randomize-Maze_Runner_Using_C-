@@ -276,8 +276,11 @@ void printMap(const vector<vector<Vertex *>> &map)
             visual[vi][vj] = " = ";
 
             // Start & End
-            if ((i == start_v->x && j == start_v->y) || (i == end_v->x && j == end_v->y))
+            if ((i == start_v->x && j == start_v->y))
                 visual[vi][vj] = " + ";
+            
+            if ((i == end_v->x && j == end_v->y))
+                visual[vi][vj] = " 0 ";
 
             // Player position
             if (i == currentPos.first && j == currentPos.second)
@@ -289,7 +292,7 @@ void printMap(const vector<vector<Vertex *>> &map)
                 {
                     int pos = vj + w + 1;
                     if (pos < visCols)
-                        visual[vi][pos] = v->right ? " - " : " - ";
+                        visual[vi][pos] = v->right ? " _ " : " _ ";
                 }
             }
 
@@ -368,6 +371,7 @@ pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &ma
         {
             start_v = map[sx][sy];
             end_v = map[ex][ey];
+            map[ex][ey]->endVertex = true;
         }
     } while (start_v == nullptr || end_v == nullptr);
     return {start_v, end_v};

@@ -18,6 +18,7 @@ struct Vertex
     bool visited = false;
     bool connected = false; // untuk flood fill
     
+    bool endVertex = false;
     bool shoot = false;
 };
 
