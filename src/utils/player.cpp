@@ -68,7 +68,7 @@ void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position, bool 
     }
 }
 
-void shootPlayerDown(vector<vector<Vertex *>> &map, pair<int, int> &position, bool first = true)
+void shootPlayerDown(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
@@ -82,7 +82,7 @@ void shootPlayerDown(vector<vector<Vertex *>> &map, pair<int, int> &position, bo
     }
 }
 
-void shootPlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> &position, bool first = true)
+void shootPlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
@@ -96,7 +96,7 @@ void shootPlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> &position, bo
     }
 }
 
-void shootPlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &position, bool first = true)
+void shootPlayerRight(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
     if (!first) v->shoot = true;
