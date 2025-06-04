@@ -6,6 +6,16 @@
 
 int playerPoint = 0;
 
+void addPlayerPoint(int point)
+{
+    playerPoint += point;
+}
+
+void removePlayerPoint(int point)
+{
+    playerPoint -= point;
+}
+
 void movePlayerUp(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
 {
     Vertex *v = map[currentPos.first][currentPos.second];
@@ -154,27 +164,35 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     {
     case 'w':
         movePlayerUp(map, currentPos);
+        removePlayerPoint(1);
         break;
     case 's':
         movePlayerDown(map, currentPos);
+        removePlayerPoint(1);
         break;
     case 'a':
         movePlayerLeft(map, currentPos);
+        removePlayerPoint(1);
         break;
     case 'd':
         movePlayerRight(map, currentPos);
+        removePlayerPoint(1);
         break;
     case 'i':
         shootPlayerUp(map, currentPos);
+        removePlayerPoint(6);
         break;
     case 'k':
         shootPlayerDown(map, currentPos);
+        removePlayerPoint(6);
         break;
     case 'j':
         shootPlayerLeft(map, currentPos);
+        removePlayerPoint(6);
         break;
     case 'l':
         shootPlayerRight(map, currentPos);
+        removePlayerPoint(6);
         break;
     }
 
