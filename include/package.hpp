@@ -15,6 +15,10 @@
 #include <chrono>
 #include <thread>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 using namespace std;
 using namespace std::chrono;
 

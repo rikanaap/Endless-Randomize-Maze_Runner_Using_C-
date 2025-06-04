@@ -9,9 +9,9 @@ void menuUtama()
 
     while (true)
     {
-        cout << "=========================================================" << endl;
-        cout << "                 MAZE RUNNER - MENU UTAMA                " << endl;
-        cout << "=========================================================" << endl;
+        cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
+        cout << "             MAZE RUNNER - MENU UTAMA                " << endl;
+        cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
         cout << "1. Mulai Permainan" << endl;
         cout << "2. Lihat Map History" << endl;
         cout << "3. Keluar" << endl;

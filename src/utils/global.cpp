@@ -3,7 +3,7 @@
 Vertex* start_v = NULL;
 Vertex* end_v = NULL;
 pair<int, int> currentPos = {0,0};
-pair<int, int> enemyPos = {0,0};
+pair<int, int> enemyPos = {3,1};
 bool gameFinished = false; 
 vector<Dir> directions = {
      {-1, 0, "up"},

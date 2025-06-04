@@ -261,30 +261,34 @@ void printMap(const vector<vector<Vertex *>> &map)
     int rows = map.size();
     int cols = map[0].size();
 
-    int visRows = rows * 2 - 1;
+    int visRows = rows * 4 - 1;
     int visCols = cols * 4 - 1;
-    vector<vector<string>> visual(visRows, vector<string>(visCols, "   "));
+    vector<vector<string>> visual(visRows, vector<string>(visCols, "⬛"));
 
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
         {
             Vertex *v = map[i][j];
-            int vi = i * 2;
+            int vi = i * 4;
             int vj = j * 4;
 
             // Default node
-            visual[vi][vj] = " = ";
+            visual[vi][vj] = "🟩";
 
             // Start & End
             if ((i == start_v->x && j == start_v->y))
-                visual[vi][vj] = " + ";
+                visual[vi][vj] = "🚪";
             
             if ((i == end_v->x && j == end_v->y))
-                visual[vi][vj] = " 0 ";
+                visual[vi][vj] = "🏁";
 
             // Player position
             if (i == currentPos.first && j == currentPos.second)
-                visual[vi][vj] = " S ";
+                visual[vi][vj] = "😯";
+            
+            // Enemy position
+            if (i == enemyPos.first && j == enemyPos.second)
+                visual[vi][vj] = "😈";
 
             if (v->weightRight > 0)
             {
@@ -292,7 +296,7 @@ void printMap(const vector<vector<Vertex *>> &map)
                 {
                     int pos = vj + w + 1;
                     if (pos < visCols)
-                        visual[vi][pos] = v->right ? " _ " : " _ ";
+                        visual[vi][pos] = v->right ? "⬜" : "⬜";
                 }
             }
 
@@ -302,12 +306,12 @@ void printMap(const vector<vector<Vertex *>> &map)
                 {
                     int pos = vi + w + 1;
                     if (pos < visRows)
-                        visual[pos][vj] = v->down ? " | " : " | ";
+                        visual[pos][vj] = v->down ? "⬜" : "⬜";
                 }
             }
             if (v->shoot == true)
             {
-                 visual[vi][vj] = " t ";
+                 visual[vi][vj] = " 🟥 ";
             }
             
         }
