@@ -1,6 +1,7 @@
 #include <iostream>
 #include "global.hpp"
 #include "map.hpp"
+#include "move.hpp"
 #include "utils.hpp"
 
 using namespace std;
@@ -41,43 +42,30 @@ void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     }
 }
 
-void moveEnemyEveryFiveSeconds(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
+void moveEnemy(vector<vector<Vertex *>> &map)
 {
-    srand(time(0)); // Seed for random movement
+    // srand(time(0));
+    // int direction = rand() % 4;
+    
+    char direction = takeFirst();
 
-    while (!gameFinished)
+    switch (direction)
     {
-        // Randomly choose a direction: 0 = up, 1 = down, 2 = left, 3 = right
-        int direction = rand() % 4;
-
-        switch (direction)
-        {
-        case 0:
-            moveEnemyUp(map, enemyPos);
-            break;
-        case 1:
-            moveEnemyDown(map, enemyPos);
-            break;
-        case 2:
-            moveEnemyLeft(map, enemyPos);
-            break;
-        case 3:
-            moveEnemyRight(map, enemyPos);
-            break;
-        }
-
-        cout << "\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
-
-        // Wait for 5 seconds
-        this_thread::sleep_for(chrono::seconds(5));
-
-        clearScreen();
-        printMap(map);
+    case 'u':
+        moveEnemyUp(map, enemyPos);
+        remove();
+        break;
+    case 'd':
+        moveEnemyDown(map, enemyPos);
+        remove();
+        break;
+    case 'l':
+        moveEnemyLeft(map, enemyPos);
+        remove();
+        break;
+    case 'r':
+        moveEnemyRight(map, enemyPos);
+        remove();
+        break;
     }
-}
-
-void runEnemy(vector<vector<Vertex *>> &map)
-{
-    thread enemyThread(moveEnemyEveryFiveSeconds, ref(map), ref(enemyPos));
-    enemyThread.detach();
 }

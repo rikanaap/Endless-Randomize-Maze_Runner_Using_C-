@@ -3,6 +3,7 @@
 #include "utils.hpp"
 #include "env.hpp"
 #include "global.hpp"
+#include "enemy.hpp"
 
 int playerPoint = 0;
 
@@ -14,6 +15,7 @@ void addPlayerPoint(int point)
 void removePlayerPoint(int point)
 {
     playerPoint -= point;
+    moveEnemy(map);
 }
 
 void movePlayerUp(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
