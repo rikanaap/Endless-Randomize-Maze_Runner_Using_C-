@@ -261,7 +261,7 @@ void printMap(const vector<vector<Vertex *>> &map)
     int rows = map.size();
     int cols = map[0].size();
 
-    int visRows = rows * 4 - 1;
+    int visRows = rows * 2 - 1;
     int visCols = cols * 4 - 1;
     vector<vector<string>> visual(visRows, vector<string>(visCols, "⬛"));
 
@@ -269,7 +269,7 @@ void printMap(const vector<vector<Vertex *>> &map)
         for (int j = 0; j < cols; ++j)
         {
             Vertex *v = map[i][j];
-            int vi = i * 4;
+            int vi = i * 2;
             int vj = j * 4;
 
             // Default node
