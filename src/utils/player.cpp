@@ -15,7 +15,6 @@ void addPlayerPoint(int point)
 void removePlayerPoint(int point)
 {
     playerPoint -= point;
-    moveEnemy(map);
 }
 
 void movePlayerUp(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
