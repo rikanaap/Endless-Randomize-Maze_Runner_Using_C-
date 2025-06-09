@@ -175,9 +175,13 @@ int countRapidSpacePresses()
 
 void controlPlayer(vector<vector<Vertex *>> &map, char input)
 {
+    if (playerPoint <= 0) {
+        return;
+    }
+
     int spacePress;
     bool validInput = false;
-    bool run = false;
+    cout << "\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
 
     switch (input)
     {
@@ -188,68 +192,68 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
         moveEnemy(map, 1);
         break;
     case 'w':
-        run = removePlayerPoint(1);
-        if (!run)
-            break;
-        movePlayerUp(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 1);
+        if (removePlayerPoint(1))
+        {
+            movePlayerUp(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 1);
+        }
         break;
     case 's':
-        run = removePlayerPoint(1);
-        if (!run)
-            break;
-        movePlayerDown(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 1);
+        if (removePlayerPoint(1))
+        {
+            movePlayerUp(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 1);
+        }
         break;
     case 'a':
-        run = removePlayerPoint(1);
-        if (!run)
-            break;
-        movePlayerLeft(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 1);
+        if (removePlayerPoint(1))
+        {
+            movePlayerUp(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 1);
+        }
         break;
     case 'd':
-        run = removePlayerPoint(1);
-        if (!run)
-            break;
-        movePlayerRight(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 1);
+        if (removePlayerPoint(1))
+        {
+            movePlayerUp(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 1);
+        }
         break;
     case 'i':
-        run = removePlayerPoint(6);
-        if (!run)
-            break;
-        shootPlayerUp(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 3);
+        if (removePlayerPoint(6))
+        {
+            shootPlayerDown(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 3);
+        }
         break;
     case 'k':
-        run = removePlayerPoint(6);
-        if (!run)
-            break;
-        shootPlayerDown(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 3);
+    if (removePlayerPoint(6))
+        {
+            shootPlayerDown(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 3);
+        }
         break;
     case 'j':
-        run = removePlayerPoint(6);
-        if (!run)
-            break;
-        shootPlayerLeft(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 3);
+        if (removePlayerPoint(6))
+        {
+            shootPlayerDown(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 3);
+        }
         break;
     case 'l':
-        run = removePlayerPoint(6);
-        if (!run)
-            break;
-        shootPlayerRight(map, currentPos);
-        validInput = true;
-        moveEnemy(map, 3);
+        if (removePlayerPoint(6))
+        {
+            shootPlayerDown(map, currentPos);
+            validInput = true;
+            moveEnemy(map, 3);
+        }
         break;
     }
 
