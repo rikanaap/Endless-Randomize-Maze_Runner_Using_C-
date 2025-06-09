@@ -1,6 +1,6 @@
-#include "map.hpp"
-#include "player.hpp"
-#include "utils.hpp"
+#include "main\map.hpp"
+#include "main\player.hpp"
+#include "main\utils.hpp"
 
 vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
 {

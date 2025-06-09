@@ -1,8 +1,8 @@
 #include <iostream>
-#include "global.hpp"
-#include "map.hpp"
-#include "move.hpp"
-#include "utils.hpp"
+#include "var\global.hpp"
+#include "main\map.hpp"
+#include "main\move.hpp"
+#include "main\utils.hpp"
 
 using namespace std;
 

@@ -1,9 +1,9 @@
-#include "map.hpp" 
-#include "move.hpp"
-#include "player.hpp"
-#include "utils.hpp"
-#include "enemy.hpp"
-#include "design.hpp"
+#include "main\map.hpp"
+#include "main\move.hpp"
+#include "main\player.hpp"
+#include "main\utils.hpp"
+#include "main\enemy.hpp"
+#include "main\design.hpp"
 
 void runMap(int rows, int cols)
 {

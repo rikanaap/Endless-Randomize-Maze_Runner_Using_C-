@@ -2,8 +2,8 @@
 #pragma once
 
 #include <vector>
-#include "struct.hpp"
-#include "package.hpp"
+#include "var\struct.hpp"
+#include "package\package.hpp"
 
 extern Vertex* start_v;
 extern Vertex* end_v;

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "utils.hpp"
-#include "design.hpp"
+#include "main\utils.hpp"
+#include "main\design.hpp"
 using namespace std;
 
 void tampilanMenang() {

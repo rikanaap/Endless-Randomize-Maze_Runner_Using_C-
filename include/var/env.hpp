@@ -1,7 +1,7 @@
 #ifndef ENV_HPP
 #define ENV_HPP
 
-#include "package.hpp"
+#include "package\package.hpp"
 
 const string GAME_NAME = "Dikejer Bobotoh";
 const int MAX_SPACE_PRESSES = 8;

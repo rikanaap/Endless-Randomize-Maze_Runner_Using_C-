@@ -1,5 +1,5 @@
-#include "package.hpp"
-#include "utils.hpp"
+#include "package\package.hpp"
+#include "main\utils.hpp"
 
 std::vector<std::string> split(const std::string &s, char delimiter)
 {

@@ -1,9 +1,9 @@
-#include "player.hpp"
-#include "map.hpp"
-#include "utils.hpp"
-#include "env.hpp"
-#include "global.hpp"
-#include "enemy.hpp"
+#include "main\player.hpp"
+#include "main\map.hpp"
+#include "main\utils.hpp"
+#include "var\env.hpp"
+#include "var\global.hpp"
+#include "main\enemy.hpp"
 
 int playerPoint = 0;
 

@@ -1,4 +1,4 @@
-#include "global.hpp"
+#include "var\global.hpp"
 
 Vertex *start_v = NULL;
 Vertex *end_v = NULL;

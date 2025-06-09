@@ -1,7 +1,7 @@
-#include "env.hpp"
-#include "utils.hpp"
-#include "global.hpp"
-#include "monkeytype.hpp"
+#include "var\env.hpp"
+#include "main\utils.hpp"
+#include "var\global.hpp"
+#include "main\game.hpp"
 
 void createQueue() {
     word.top = 0;
@@ -51,7 +51,7 @@ void runMonkeytype(char* selectedWord) {
 
     cout << "Type the word: " << selectedWord << endl;
 
-    while (!isEmpty()) {
+    while (!isCharEmpty()) {
         char expected = getFirstChar();
         char input = _getch();
 

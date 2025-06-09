@@ -1,6 +1,6 @@
-#include "move.hpp"
-#include "utils.hpp"
-#include "global.hpp"
+#include "main\move.hpp"
+#include "main\utils.hpp"
+#include "var\global.hpp"
 
 using namespace std;
 

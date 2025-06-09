@@ -1,7 +1,7 @@
 #ifndef MOVE_HPP
 #define MOVE_HPP
 
-#include "package.hpp"
+#include "package\package.hpp"
 
 bool isMoveEmpty();
 void insertMove(char data);

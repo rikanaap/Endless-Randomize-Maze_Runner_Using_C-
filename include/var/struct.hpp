@@ -1,7 +1,7 @@
 #ifndef STRUCT_HPP
 #define STRUCT_HPP
-#include "package.hpp"
-#include "env.hpp"
+#include "package\package.hpp"
+#include "var\env.hpp"
 
 struct Vertex
 {

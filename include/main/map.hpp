@@ -1,8 +1,8 @@
 #ifndef MAP_HPP
 #define MAP_HPP
-#include "package.hpp"
-#include "struct.hpp"
-#include "global.hpp"
+#include "package\package.hpp"
+#include "var\struct.hpp"
+#include "var\global.hpp"
 
 //?FUNCTION
 void printMap(const vector<vector<Vertex *>> &map);
