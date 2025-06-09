@@ -8,8 +8,14 @@
 int playerPoint = 0;
 
 void addPlayerPoint(int point) { playerPoint += point; }
-void removePlayerPoint(int point) { playerPoint -= point;
- }
+bool removePlayerPoint(int point)
+{
+    if (playerPoint < point)
+        return false;
+    playerPoint -= point;
+    return true;
+}
+
 void removeEnemy(Vertex *v)
 {
     if (v->x == enemyPos.first && v->y == enemyPos.second)
@@ -139,7 +145,10 @@ int countRapidSpacePresses()
     auto startTime = high_resolution_clock::now();
 
     cout << "Press SPACE rapidly (within " << TIME_THRESHOLD_MS << " ms)..." << endl;
-    cout << "1"; wait(1); cout << "2"; wait(1);
+    cout << "1";
+    wait(1);
+    cout << "2";
+    wait(1);
     while (true)
     {
         auto now = high_resolution_clock::now();
@@ -168,6 +177,7 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
 {
     int spacePress;
     bool validInput = false;
+    bool run = false;
 
     switch (input)
     {
@@ -178,51 +188,67 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
         moveEnemy(map, 1);
         break;
     case 'w':
-        removePlayerPoint(1);
+        run = removePlayerPoint(1);
+        if (!run)
+            break;
         movePlayerUp(map, currentPos);
         validInput = true;
         moveEnemy(map, 1);
         break;
     case 's':
+        run = removePlayerPoint(1);
+        if (!run)
+            break;
         movePlayerDown(map, currentPos);
         validInput = true;
-        removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
     case 'a':
+        run = removePlayerPoint(1);
+        if (!run)
+            break;
         movePlayerLeft(map, currentPos);
         validInput = true;
-        removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
     case 'd':
+        run = removePlayerPoint(1);
+        if (!run)
+            break;
         movePlayerRight(map, currentPos);
         validInput = true;
-        removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
     case 'i':
+        run = removePlayerPoint(6);
+        if (!run)
+            break;
         shootPlayerUp(map, currentPos);
         validInput = true;
-        removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
     case 'k':
+        run = removePlayerPoint(6);
+        if (!run)
+            break;
         shootPlayerDown(map, currentPos);
         validInput = true;
-        removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
     case 'j':
+        run = removePlayerPoint(6);
+        if (!run)
+            break;
         shootPlayerLeft(map, currentPos);
         validInput = true;
-        removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
     case 'l':
+        run = removePlayerPoint(6);
+        if (!run)
+            break;
         shootPlayerRight(map, currentPos);
         validInput = true;
-        removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
     }
