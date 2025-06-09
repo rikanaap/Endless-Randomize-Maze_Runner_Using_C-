@@ -7,14 +7,15 @@ void menuLevel()
     while (true)
     {
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
+        cout << "                          " << endl;
         cout << "                          🏃 PILIH LEVEL 🏃" << endl;
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
-        cout << "1. Level 1️⃣" << endl;
-        cout << "2. Level 2️⃣" << endl;
-        cout << "3. Level 3️⃣" << endl;
-        cout << "4. Level 4️⃣" << endl;
-        cout << "5. Level 5️⃣" << endl;
-        cout << "6. Kembali ke Menu Utama" << endl;
+        cout << "   1. Level 1️⃣" << endl;
+        cout << "   2. Level 2️⃣" << endl;
+        cout << "   3. Level 3️⃣" << endl;
+        cout << "   4. Level 4️⃣" << endl;
+        cout << "   5. Level 5️⃣" << endl;
+        cout << "   6. ◀️ | Kembali ke Menu Utama" << endl;
 
         int choice;
         cout << "Tentukan pilihan level (1-6): ";
@@ -37,9 +38,7 @@ void menuLevel()
         case '5':
             runMap(15, 15);
             break;
-        case '6':
-            runMap(18, 18);
-            return; // Exit to main menu
+        case '6': return; // Exit to main menu
         default:
             cout << "Tidak ada pilihan, mohon coba lagi!!";
             wait(1);

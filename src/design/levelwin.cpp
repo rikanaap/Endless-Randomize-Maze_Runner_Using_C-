@@ -1,9 +1,9 @@
 #include <iostream>
 #include "utils.hpp"
-#include <design.hpp>
+#include "design.hpp"
 using namespace std;
 
-void victoryScreen() {
+void tampilanMenang() {
     clearScreen();
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
     cout << "         🏁 SELAMAT! 🏁                  " << endl;
@@ -18,7 +18,7 @@ void victoryScreen() {
     cout << "Pilihanmu: ";
 
     char pilihan;
-    cin >> pilihan;
+    pilihan = getChar();
     switch (pilihan) {
         case '1':
             clearScreen();
@@ -32,7 +32,7 @@ void victoryScreen() {
         default:
             cout << "Pilihan tidak valid.\n";
             wait(1);
-            victoryScreen(); // ulang lagi
+            tampilanMenang(); // ulang lagi
             break;
     }
 }

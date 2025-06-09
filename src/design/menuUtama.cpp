@@ -11,10 +11,14 @@ void menuUtama()
     {
         while(true){
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
+            cout << "                  " << endl;
             cout << "                  🏃 MAZE RUNNER - MENU UTAMA 🏃" << endl;
+            cout << "                  " << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
-            cout << "1. 🎮 | Mulai Permainan" << endl;
-            cout << "2. ⛔ | Keluar" << endl;
+            cout << endl;
+            cout << "   1. 🎮 | Mulai Permainan" << endl;
+            cout << "   2. ⛔ | Keluar" << endl;
+            cout << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << "Silakan pilih menu (1-2): ";
             cin.clear();

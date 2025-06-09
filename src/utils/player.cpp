@@ -22,14 +22,17 @@ void removeEnemy(Vertex *v)
         enemyPos = {-1, -1};
 }
 
+void isPlayerWin(Vertex *nextVertex){
+    if(nextVertex->endVertex) playerWin = true;
+}
+
 //? MOVE FUNCTION
 void movePlayerUp(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
 {
     Vertex *v = map[currentPos.first][currentPos.second];
     if (v->up && v->weightUp > 0)
     {
-        if (v->up->endVertex)
-            gameFinished = true;
+        isPlayerWin(v->up);
         currentPos.first -= 1;
     }
 }
@@ -39,8 +42,7 @@ void movePlayerDown(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
     Vertex *v = map[currentPos.first][currentPos.second];
     if (v->down && v->weightDown > 0)
     {
-        if (v->down->endVertex)
-            gameFinished = true;
+        isPlayerWin(v->down);
         currentPos.first += 1;
     }
 }
@@ -50,8 +52,7 @@ void movePlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
     Vertex *v = map[currentPos.first][currentPos.second];
     if (v->left && v->weightLeft > 0)
     {
-        if (v->left->endVertex)
-            gameFinished = true;
+        isPlayerWin(v->left);
         currentPos.second -= 1;
     }
 }
@@ -61,8 +62,7 @@ void movePlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
     Vertex *v = map[currentPos.first][currentPos.second];
     if (v->right && v->weightRight > 0)
     {
-        if (v->right->endVertex)
-            gameFinished = true;
+        isPlayerWin(v->right);
         currentPos.second += 1;
     }
 }
@@ -175,13 +175,10 @@ int countRapidSpacePresses()
 
 void controlPlayer(vector<vector<Vertex *>> &map, char input)
 {
-    if (playerPoint <= 0) {
-        return;
-    }
-
     int spacePress;
     bool validInput = false;
-    cout << "\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
+    cout << "\n🪙 Point: "<< playerPoint << "\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑";
+    if (playerPoint > 0) cout <<"\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
 
     switch (input)
     {
@@ -202,7 +199,7 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     case 's':
         if (removePlayerPoint(1))
         {
-            movePlayerUp(map, currentPos);
+            movePlayerDown(map, currentPos);
             validInput = true;
             moveEnemy(map, 1);
         }
@@ -210,7 +207,7 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     case 'a':
         if (removePlayerPoint(1))
         {
-            movePlayerUp(map, currentPos);
+            movePlayerLeft(map, currentPos);
             validInput = true;
             moveEnemy(map, 1);
         }
@@ -218,7 +215,7 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     case 'd':
         if (removePlayerPoint(1))
         {
-            movePlayerUp(map, currentPos);
+            movePlayerRight(map, currentPos);
             validInput = true;
             moveEnemy(map, 1);
         }
@@ -226,7 +223,7 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     case 'i':
         if (removePlayerPoint(6))
         {
-            shootPlayerDown(map, currentPos);
+            shootPlayerUp(map, currentPos);
             validInput = true;
             moveEnemy(map, 3);
         }
@@ -261,5 +258,6 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     {
         clearScreen();
         printMap(map);
+        cout << "\n🪙 Point: "<< playerPoint <<"\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑\n\n[q: quit]";
     }
 }

@@ -25,7 +25,6 @@ void insertMove(char data)
         enemyMovement.isi[enemyMovement.top] = data;
         enemyMovement.top++;
     }
-    cout << "Enemy Movement Total: " << enemyMovement.top;
 }
 
 void removeMove()

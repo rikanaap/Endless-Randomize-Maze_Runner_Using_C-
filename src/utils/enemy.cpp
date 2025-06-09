@@ -7,6 +7,10 @@
 using namespace std;
 
 //? Move Function
+bool enemyIsInPlayer(){
+    return (enemyPos.first == currentPos.first) && (enemyPos.second == currentPos.second);
+}
+
 void moveEnemyUp(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
     Vertex *v = map[enemyPos.first][enemyPos.second];
@@ -14,6 +18,7 @@ void moveEnemyUp(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.first -= 1;
     }
+    enemyIsInPlayer();
 }
 void moveEnemyDown(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
@@ -22,6 +27,7 @@ void moveEnemyDown(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.first += 1;
     }
+    enemyIsInPlayer();
 }
 void moveEnemyLeft(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
@@ -30,6 +36,7 @@ void moveEnemyLeft(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.second -= 1;
     }
+    enemyIsInPlayer();
 }
 void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
@@ -38,6 +45,7 @@ void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.second += 1;
     }
+    enemyIsInPlayer();
 }
 
 unordered_map<Vertex *, pair<Vertex *, char>> parent;
@@ -71,7 +79,7 @@ bool bfs(Vertex *start, Vertex *target, vector<vector<bool>> &visited, vector<ve
         q.pop();
 
         if (current == target)
-            return true;
+        return true;
 
         for (const Dir &dir : directions)
         {
@@ -117,8 +125,7 @@ pair<int, int> randomizePosition(int rows, int cols)
 void searchUser(vector<vector<Vertex *>> &map)
 {
     Vertex *enemy = (enemyPos.first >= 0) ? map[enemyPos.first][enemyPos.second] : NULL;
-    if (enemy == NULL)
-        return;
+    if (enemy == NULL) return;
     Vertex *player = map[currentPos.first][currentPos.second];
 
     int rows = map.size();
