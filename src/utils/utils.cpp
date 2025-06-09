@@ -28,3 +28,7 @@ int randomInt(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }
+
+void wait(int seconds) {
+    std::this_thread::sleep_for(std::chrono::seconds(seconds));
+}

@@ -50,7 +50,7 @@ bool isConnected(Vertex* from, Vertex* to, const string& direction) {
     return false;
 }
 
-bool bfs(Vertex* start, Vertex* target, vector<vector<bool>>& visited) {
+bool bfs(Vertex* start, Vertex* target, vector<vector<bool>>& visited, vector<vector<Vertex *>> &map) {
     int rows = visited.size();
     int cols = visited[0].size();
 
@@ -70,7 +70,7 @@ bool bfs(Vertex* start, Vertex* target, vector<vector<bool>>& visited) {
             int ny = current->y + dir.dy;
 
             if (nx < 0 || ny < 0 || nx >= rows || ny >= cols) continue;
-            Vertex* neighbor = current_map[nx][ny];
+            Vertex* neighbor = map[nx][ny];
 
             if (!neighbor || visited[nx][ny]) continue;
             if (!isConnected(current, neighbor, dir.name)) continue;
@@ -102,7 +102,7 @@ void searchUser(vector<vector<Vertex *>> &map){
     // Clear previous moves
     enemyMovement.top = 0;
 
-    if (bfs(enemy, player, visited)) {
+    if (bfs(enemy, player, visited, map)) {
         cout << "Shortest path found using BFS!" << endl;
         vector<char> path;
         for (Vertex* v = player; v != enemy; v = parent[v].first) {
