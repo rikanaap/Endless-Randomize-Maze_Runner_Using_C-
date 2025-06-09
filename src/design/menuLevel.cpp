@@ -18,24 +18,26 @@ void menuLevel()
         cout << "   ⌫ | Kembali ke Menu Utama ◀️" << endl;
 
         int choice;
-        cout << "Tentukan pilihan level (1-6): ";
+        cout << "Tentukan pilihan level: ";
         choice = getChar();
+        choice = tolower(choice);
+
         cout << endl; clearScreen();
         switch (choice)
         {
-        case 'E':
+        case 'e':
             runMap(3, 3, {true, true}); // Adjusting rows and cols based on level
             break;
-        case 'R':
+        case 'r':
             runMap(6, 6, {true, false});
             break;
-        case 'T':
+        case 't':
             runMap(9, 9, {false, true});
             break;
-        case 'Y':
+        case 'y':
             runMap(12, 12, {true, true});
             break;
-        case 'U':
+        case 'u':
             runMap(15, 15, {false, true});
             break;
         case 8: return; // Exit to main menu

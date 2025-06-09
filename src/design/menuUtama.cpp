@@ -32,7 +32,7 @@ void menuUtama()
                 clearScreen();
                 menuLevel();
                 break;
-            case 'h':
+            case 8:
                 cout << "\nTerima kasih telah bermain. Sampai jumpa!😎👋\n";
                 wait(1); exit(0);
                 break;
