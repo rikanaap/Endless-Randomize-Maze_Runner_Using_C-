@@ -15,4 +15,4 @@ extern bool playerWin;
 extern bool enemyWin;
 extern vector<Dir> directions;
 extern enemyQueue enemyMovement;
-
+extern letterQueue word;

@@ -44,12 +44,11 @@ void resetQueue(const char* letters) {
     }
 }
 
-void runMonkeytype(){
-    const char* target = "monkey";
+void runMonkeytype(char* selectedWord) {
     createQueue();
-    resetQueue(target);
+    resetQueue(selectedWord);
 
-    cout << "Ketik kata ini: " << target << endl;
+    cout << "Type the word: " << selectedWord << endl;
 
     while (!isEmpty()) {
         char expected = getFirstChar();
@@ -60,7 +59,7 @@ void runMonkeytype(){
             removeChar();
         } else {
             cout << "\nSalah ketik! Ulangi dari awal.\n";
-            resetQueue(target);
+            resetQueue(selectedWord);
         }
     }
 
