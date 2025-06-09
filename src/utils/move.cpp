@@ -31,11 +31,9 @@ void insertMove(char data)
 void removeMove()
 {
     if (isMoveEmpty()) { 
-        cout << "Makan dulu";
         return; }
     else
     {
-        cout << "Naik wak";
         for (int i = 1; i < enemyMovement.top; i++)
         {
             enemyMovement.isi[i-1] = enemyMovement.isi[i];

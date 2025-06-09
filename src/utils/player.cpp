@@ -8,7 +8,8 @@
 int playerPoint = 0;
 
 void addPlayerPoint(int point) { playerPoint += point; }
-void removePlayerPoint(int point) { playerPoint -= point; }
+void removePlayerPoint(int point) { playerPoint -= point;
+ }
 void removeEnemy(Vertex *v)
 {
     if (v->x == enemyPos.first && v->y == enemyPos.second)
@@ -138,7 +139,7 @@ int countRapidSpacePresses()
     auto startTime = high_resolution_clock::now();
 
     cout << "Press SPACE rapidly (within " << TIME_THRESHOLD_MS << " ms)..." << endl;
-
+    cout << "1"; wait(1); cout << "2"; wait(1);
     while (true)
     {
         auto now = high_resolution_clock::now();
@@ -176,49 +177,49 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
         rollDice(spacePress);
         moveEnemy(map, 1);
         break;
-        case 'w':
+    case 'w':
+        removePlayerPoint(1);
         movePlayerUp(map, currentPos);
         validInput = true;
-        removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
-        case 's':
+    case 's':
         movePlayerDown(map, currentPos);
         validInput = true;
         removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
-        case 'a':
+    case 'a':
         movePlayerLeft(map, currentPos);
         validInput = true;
         removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
-        case 'd':
+    case 'd':
         movePlayerRight(map, currentPos);
         validInput = true;
         removePlayerPoint(1);
         moveEnemy(map, 1);
         break;
-        case 'i':
+    case 'i':
         shootPlayerUp(map, currentPos);
         validInput = true;
         removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
-        case 'k':
+    case 'k':
         shootPlayerDown(map, currentPos);
         validInput = true;
         removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
-        case 'j':
+    case 'j':
         shootPlayerLeft(map, currentPos);
         validInput = true;
         removePlayerPoint(6);
         moveEnemy(map, 3);
         break;
-        case 'l':
+    case 'l':
         shootPlayerRight(map, currentPos);
         validInput = true;
         removePlayerPoint(6);

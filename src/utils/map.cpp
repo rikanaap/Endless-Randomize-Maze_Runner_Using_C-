@@ -273,7 +273,7 @@ void printMap(const vector<vector<Vertex *>> &map)
             int vj = j * 4;
 
             // Default node
-            visual[vi][vj] = "🟩";
+            visual[vi][vj] = "⬜";
 
             // Start & End
             if ((i == start_v->x && j == start_v->y))
@@ -311,7 +311,7 @@ void printMap(const vector<vector<Vertex *>> &map)
             }
             if (v->shoot == true)
             {
-                 visual[vi][vj] = " 🟥 ";
+                 visual[vi][vj] = "🟥";
             }
             
         }

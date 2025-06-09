@@ -40,47 +40,63 @@ void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     }
 }
 
-unordered_map<Vertex*, pair<Vertex*, char>> parent;
+unordered_map<Vertex *, pair<Vertex *, char>> parent;
 
-bool isConnected(Vertex* from, Vertex* to, const string& direction) {
-    if (direction == "up") return from->up == to && from->weightUp != -1;
-    if (direction == "down") return from->down == to && from->weightDown != -1;
-    if (direction == "left") return from->left == to && from->weightLeft != -1;
-    if (direction == "right") return from->right == to && from->weightRight != -1;
+bool isConnected(Vertex *from, Vertex *to, const string &direction)
+{
+    if (direction == "up")
+        return from->up == to && from->weightUp != -1;
+    if (direction == "down")
+        return from->down == to && from->weightDown != -1;
+    if (direction == "left")
+        return from->left == to && from->weightLeft != -1;
+    if (direction == "right")
+        return from->right == to && from->weightRight != -1;
     return false;
 }
 
-bool bfs(Vertex* start, Vertex* target, vector<vector<bool>>& visited, vector<vector<Vertex *>> &map) {
+bool bfs(Vertex *start, Vertex *target, vector<vector<bool>> &visited, vector<vector<Vertex *>> &map)
+{
     int rows = visited.size();
     int cols = visited[0].size();
 
-    queue<Vertex*> q;
+    queue<Vertex *> q;
     q.push(start);
     visited[start->x][start->y] = true;
     parent.clear();
 
-    while (!q.empty()) {
-        Vertex* current = q.front();
+    while (!q.empty())
+    {
+        Vertex *current = q.front();
         q.pop();
 
-        if (current == target) return true;
+        if (current == target)
+            return true;
 
-        for (const Dir& dir : directions) {
+        for (const Dir &dir : directions)
+        {
             int nx = current->x + dir.dx;
             int ny = current->y + dir.dy;
 
-            if (nx < 0 || ny < 0 || nx >= rows || ny >= cols) continue;
-            Vertex* neighbor = map[nx][ny];
+            if (nx < 0 || ny < 0 || nx >= rows || ny >= cols)
+                continue;
+            Vertex *neighbor = map[nx][ny];
 
-            if (!neighbor || visited[nx][ny]) continue;
-            if (!isConnected(current, neighbor, dir.name)) continue;
+            if (!neighbor || visited[nx][ny])
+                continue;
+            if (!isConnected(current, neighbor, dir.name))
+                continue;
 
             visited[nx][ny] = true;
             char moveChar = ' ';
-            if (dir.name == "up") moveChar = 'U';
-            else if (dir.name == "down") moveChar = 'D';
-            else if (dir.name == "left") moveChar = 'L';
-            else if (dir.name == "right") moveChar = 'R';
+            if (dir.name == "up")
+                moveChar = 'U';
+            else if (dir.name == "down")
+                moveChar = 'D';
+            else if (dir.name == "left")
+                moveChar = 'L';
+            else if (dir.name == "right")
+                moveChar = 'R';
 
             parent[neighbor] = {current, moveChar};
             q.push(neighbor);
@@ -90,51 +106,67 @@ bool bfs(Vertex* start, Vertex* target, vector<vector<bool>>& visited, vector<ve
     return false;
 }
 
-void searchUser(vector<vector<Vertex *>> &map){
-    Vertex* enemy = map[enemyPos.first][enemyPos.second];
-    Vertex* player = map[currentPos.first][currentPos.second];
+pair<int, int> randomizePosition(int rows, int cols)
+{
+    int sx = randomInt(0, rows - 1);
+    int sy = randomInt(0, cols - 1);
+    return {sx, sy };
+}
+
+
+void searchUser(vector<vector<Vertex *>> &map)
+{
+    Vertex *enemy = (enemyPos.first >= 0) ? map[enemyPos.first][enemyPos.second] : NULL;
+    if (enemy == NULL)
+        return;
+    Vertex *player = map[currentPos.first][currentPos.second];
 
     int rows = map.size();
     int cols = map[0].size();
 
     vector<vector<bool>> visited(rows, vector<bool>(cols, false));
 
-    // Clear previous moves
     enemyMovement.top = 0;
 
-    if (bfs(enemy, player, visited, map)) {
-        cout << "Shortest path found using BFS!" << endl;
-        vector<char> path;
-        for (Vertex* v = player; v != enemy; v = parent[v].first) {
-            path.push_back(parent[v].second);
+    while (true)
+    {
+        if (bfs(enemy, player, visited, map))
+        {
+            vector<char> path;
+            for (Vertex *v = player; v != enemy; v = parent[v].first)
+            {
+                path.push_back(parent[v].second);
+            }
+            reverse(path.begin(), path.end());
+            for (char move : path)
+                insertMove(move);
+            cout << endl;
+            break;
         }
-        reverse(path.begin(), path.end());
-        for (char move : path) insertMove(move);
-
-        cout << "Moves: ";
-        for (int i = 0; i < enemyMovement.top; ++i)
-            cout << enemyMovement.isi[i] << ' ';
-        cout << endl;
-    } else {
-        cout << "No path found!" << endl;
+        else
+        {
+            enemyPos = randomizePosition(rows, cols);
+            enemy =  map[enemyPos.first][enemyPos.second];
+        }
     }
 }
-
 
 void moveEnemy(vector<vector<Vertex *>> &map, int loopFor = 1)
 {
     for (int i = 0; i < loopFor; ++i)
     {
-        if (isMoveEmpty()) { searchUser(map); }
+        if (isMoveEmpty())
+        {
+            searchUser(map);
+        }
 
         char direction = firstMove();
-        cout << "Move: " << direction;
         switch (direction)
         {
         case 'U':
             moveEnemyUp(map, enemyPos);
             break;
-            case 'D':
+        case 'D':
             moveEnemyDown(map, enemyPos);
             break;
         case 'L':
