@@ -16,22 +16,23 @@ void menuUtama()
             cout << "                  " << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << endl;
-            cout << "   1. 🎮 | Mulai Permainan" << endl;
-            cout << "   2. ⛔ | Keluar" << endl;
+            cout << "   F | Mulai Permainan 🎮" << endl;
+            cout << "   ⌫ | Keluar ⛔" << endl;
             cout << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
-            cout << "Silakan pilih menu (1-2): ";
+            cout << "Silakan pilih menu: ";
             cin.clear();
             pilihan = getChar();
+            pilihan = tolower(pilihan);
 
             switch (pilihan)
             {
-            case '1':
+            case 'f':
                 cout << "\n⏩ Memulai permainan...\n";
                 clearScreen();
                 menuLevel();
                 break;
-            case '2':
+            case 'h':
                 cout << "\nTerima kasih telah bermain. Sampai jumpa!😎👋\n";
                 wait(1); exit(0);
                 break;

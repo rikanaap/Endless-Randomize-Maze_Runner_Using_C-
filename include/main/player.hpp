@@ -4,6 +4,8 @@
 #include "var\struct.hpp"
 #include "var\global.hpp"
 
-void controlPlayer(vector<vector<Vertex *>> &map, char input);
+void controlPlayer(vector<vector<Vertex *>> &map, char input, GameConfig config);
+void printTutorial();
+void addPlayerPoint(int point);
 
 #endif

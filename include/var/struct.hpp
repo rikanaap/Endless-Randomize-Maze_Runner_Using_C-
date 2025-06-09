@@ -28,6 +28,12 @@ struct Map {
     Vertex* start, end;
 };
 
+struct GameConfig {
+    bool fastTyping = false;
+    bool acurracyTyping = false;
+    bool defaultPoint = 0;
+};
+
 struct Dir
 {
     int dx, dy;

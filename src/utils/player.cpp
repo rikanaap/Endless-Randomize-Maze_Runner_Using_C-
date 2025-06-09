@@ -22,8 +22,10 @@ void removeEnemy(Vertex *v)
         enemyPos = {-1, -1};
 }
 
-void isPlayerWin(Vertex *nextVertex){
-    if(nextVertex->endVertex) playerWin = true;
+void isPlayerWin(Vertex *nextVertex)
+{
+    if (nextVertex->endVertex)
+        playerWin = true;
 }
 
 //? MOVE FUNCTION
@@ -173,20 +175,47 @@ int countRapidSpacePresses()
     return count;
 }
 
-void controlPlayer(vector<vector<Vertex *>> &map, char input)
+void printTutorial()
 {
-    int spacePress;
-    bool validInput = false;
-    cout << "\n🪙 Point: "<< playerPoint << "\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑";
-    if (playerPoint > 0) cout <<"\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
+    cout << "\n🪙 Point: " << playerPoint;
+    if (playerPoint < 4)
+        "\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑";
+    cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
+}
 
+void controlPlayer(vector<vector<Vertex *>> &map, char input, GameConfig config)
+{
+    int choosenGame = 0;
+    bool validInput = false;
+    // printTutorial();
     switch (input)
     {
     case 'g':
-        spacePress = countRapidSpacePresses();
-        cout << spacePress;
-        rollDice(spacePress);
-        moveEnemy(map, 1);
+        clearScreen();
+        if (config.acurracyTyping && config.fastTyping)
+        {
+            cout << "🫡 Pilih Game:" << endl;
+            cout << "F. Fast Typing:" << endl;
+            cout << "H.  Accuracy Typing:" << endl;
+            char input;
+            input = getChar();
+            if (input != '1')
+                choosenGame = 2;
+        }
+        else
+            choosenGame = config.acurracyTyping ? 1 : 2;
+        switch (choosenGame)
+        {
+        case 1:
+            fastTyping("Makan nasi udang di kampang");
+            break;
+
+        case 2:
+            char word[] = "Makan nasi di udang di kampang";
+            runMonkeytype(word);
+            break;
+        }
+        validInput = true;
         break;
     case 'w':
         if (removePlayerPoint(1))
@@ -229,7 +258,7 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
         }
         break;
     case 'k':
-    if (removePlayerPoint(6))
+        if (removePlayerPoint(6))
         {
             shootPlayerDown(map, currentPos);
             validInput = true;
@@ -258,6 +287,6 @@ void controlPlayer(vector<vector<Vertex *>> &map, char input)
     {
         clearScreen();
         printMap(map);
-        cout << "\n🪙 Point: "<< playerPoint <<"\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑\n\n[q: quit]";
+        printTutorial();
     }
 }

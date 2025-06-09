@@ -5,7 +5,7 @@
 #include "main\enemy.hpp"
 #include "main\design.hpp"
 
-void runMap(int rows, int cols)
+void runMap(int rows, int cols, GameConfig config)
 {
     auto map = generateMap(rows, cols, 17);
     char input;
@@ -14,7 +14,7 @@ void runMap(int rows, int cols)
     enemyWin = false;
     
     searchUser(map);
-    cout << "\n🪙 Point: "<< playerPoint <<"\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑\n\n[q: quit]";
+    printTutorial();
     while (true)
     {
         input = getChar();
@@ -24,7 +24,7 @@ void runMap(int rows, int cols)
             return;
         }
 
-        controlPlayer(map, input);
+        controlPlayer(map, input, config);
         if(enemyWin) return tampilanKalah();
         if(playerWin) return tampilanMenang();
     }
