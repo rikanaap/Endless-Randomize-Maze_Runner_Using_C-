@@ -33,5 +33,10 @@ struct Dir
     string name;
 };
 
+struct Queue
+{
+    int top = 0;
+    char isi[15];
+};
 
 #endif

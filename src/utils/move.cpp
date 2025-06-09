@@ -1,57 +1,41 @@
-#include <iostream>
 #include "move.hpp"
-#include "global.hpp"
-#include "map.hpp"
 #include "utils.hpp"
+#include "global.hpp"
 
 using namespace std;
 
-bool isEmpty()
+int maxMovementSize = 15;
+
+bool isMoveEmpty()
 {
-    if (enemyMovement.top == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    if (enemyMovement.top == 0) return true;
+    else return false;
 }
 
 bool isFull()
 {
-    if (enemyMovement.top >= max_size)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    if (enemyMovement.top >= maxMovementSize) return true;
+    return false;
 }
 
-void insert(char data)
+void insertMove(char data)
 {
-    if (isFull())
-    {
-        return;
-    }
-    else
-    {
+    if (isFull()) return;
+    else {
         enemyMovement.isi[enemyMovement.top] = data;
         enemyMovement.top++;
     }
+    cout << "Enemy Movement Total: " << enemyMovement.top;
 }
 
-void remove()
+void removeMove()
 {
-    if (isEmpty())
-    {
-        return;
-    }
+    if (isMoveEmpty()) { 
+        cout << "Makan dulu";
+        return; }
     else
     {
-        char pop = enemyMovement.isi[0];
+        cout << "Naik wak";
         for (int i = 1; i < enemyMovement.top; i++)
         {
             enemyMovement.isi[i-1] = enemyMovement.isi[i];
@@ -60,14 +44,8 @@ void remove()
     }
 }
 
-char takeFirst()
+char firstMove()
 {
-    if (isEmpty())
-    {
-        return ' ';
-    }
-    else
-    {
-        return enemyMovement.isi[0];
-    }
+    if (isMoveEmpty()) return ' ';
+    else return enemyMovement.isi[0];
 }

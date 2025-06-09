@@ -13,4 +13,5 @@ extern pair<int, int> enemyPos;
 extern int playerPoint;
 extern bool gameFinished;
 extern vector<Dir> directions;
+extern Queue enemyMovement;
 

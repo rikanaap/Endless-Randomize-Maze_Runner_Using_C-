@@ -3,15 +3,11 @@
 
 #include "package.hpp"
 
-const int max_size = 15;
-struct Queue
-{
-    int top = 0;
-    char isi[max_size];
-};
-extern Queue enemyMovement;
-void insert(char data);
-void remove();
-char takeFirst();
+bool isMoveEmpty();
+void insertMove(char data);
+void removeMove();
+char firstMove();
+
+// const int maxMovementSize = 15;
 
 #endif

@@ -7,22 +7,22 @@
 
 int playerPoint = 0;
 
-void addPlayerPoint(int point)
+void addPlayerPoint(int point) { playerPoint += point; }
+void removePlayerPoint(int point) { playerPoint -= point; }
+void removeEnemy(Vertex *v)
 {
-    playerPoint += point;
+    if (v->x == enemyPos.first && v->y == enemyPos.second)
+        enemyPos = {-1, -1};
 }
 
-void removePlayerPoint(int point)
-{
-    playerPoint -= point;
-}
-
+//? MOVE FUNCTION
 void movePlayerUp(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
 {
     Vertex *v = map[currentPos.first][currentPos.second];
     if (v->up && v->weightUp > 0)
     {
-        if (v->up->endVertex) gameFinished = true;
+        if (v->up->endVertex)
+            gameFinished = true;
         currentPos.first -= 1;
     }
 }
@@ -60,15 +60,12 @@ void movePlayerRight(vector<vector<Vertex *>> &map, pair<int, int> &currentPos)
     }
 }
 
-void removeEnemy( Vertex *v){
-     if (v->x == enemyPos.first && v->y == enemyPos.second) enemyPos  = {-1,-1};
-}
-
-
+//?SHOOT FUNCTION
 void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
-    if (!first) v->shoot = true;
+    if (!first)
+        v->shoot = true;
     removeEnemy(v);
     printMap(map);
     clearScreen();
@@ -82,7 +79,8 @@ void shootPlayerUp(vector<vector<Vertex *>> &map, pair<int, int> position, bool 
 void shootPlayerDown(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
-    if (!first) v->shoot = true;
+    if (!first)
+        v->shoot = true;
     removeEnemy(v);
     printMap(map);
     clearScreen();
@@ -96,12 +94,13 @@ void shootPlayerDown(vector<vector<Vertex *>> &map, pair<int, int> position, boo
 void shootPlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
-    if (!first) v->shoot = true;
+    if (!first)
+        v->shoot = true;
     removeEnemy(v);
     printMap(map);
     clearScreen();
     v->shoot = false;
-    if (v->left&& v->weightLeft > 0)
+    if (v->left && v->weightLeft > 0)
     {
         shootPlayerLeft(map, {v->left->x, v->left->y}, false);
     }
@@ -110,7 +109,8 @@ void shootPlayerLeft(vector<vector<Vertex *>> &map, pair<int, int> position, boo
 void shootPlayerRight(vector<vector<Vertex *>> &map, pair<int, int> position, bool first = true)
 {
     Vertex *v = map[position.first][position.second];
-    if (!first) v->shoot = true;
+    if (!first)
+        v->shoot = true;
     removeEnemy(v);
     printMap(map);
     clearScreen();
@@ -120,28 +120,42 @@ void shootPlayerRight(vector<vector<Vertex *>> &map, pair<int, int> position, bo
     }
 }
 
-int countRapidSpacePresses() {
+//?OTHER  FUNCTION
+void rollDice(int times)
+{
+    srand(time(0));
+    cout << "\nRolling dice " << times << " times:" << endl;
+
+    for (int i = 0; i < times; ++i)
+    {
+        int roll = rand() % 6 + 1; // 1 to 6
+        cout << "Roll " << (i + 1) << ": " << roll << endl;
+    }
+}
+int countRapidSpacePresses()
+{
     int count = 0;
-    auto lastTime = high_resolution_clock::now();
+    auto startTime = high_resolution_clock::now();
 
-    cout << "Press SPACE rapidly (max " << MAX_SPACE_PRESSES << " times)..." << endl;
+    cout << "Press SPACE rapidly (within " << TIME_THRESHOLD_MS << " ms)..." << endl;
 
-    while (count < MAX_SPACE_PRESSES) {
-        if (_kbhit()) {
+    while (true)
+    {
+        auto now = high_resolution_clock::now();
+        auto elapsed = duration_cast<milliseconds>(now - startTime);
+
+        if (elapsed.count() >= TIME_THRESHOLD_MS)
+        {
+            break;
+        }
+
+        if (_kbhit())
+        {
             char ch = _getch();
-            if (ch == ' ') {
-                auto now = high_resolution_clock::now();
-                auto duration = duration_cast<milliseconds>(now - lastTime);
-
-                if (duration.count() > TIME_THRESHOLD_MS) {
-                    cout << "Too slow! Restarting count." << endl;
-                    count = 0; // Reset if too slow
-                } else {
-                    ++count;
-                    cout << "SPACE pressed! Count = " << count << endl;
-                }
-
-                lastTime = now;
+            if (ch == ' ')
+            {
+                ++count;
+                cout << "SPACE pressed! Count = " << count << endl;
             }
         }
     }
@@ -149,54 +163,72 @@ int countRapidSpacePresses() {
     return count;
 }
 
-void rollDice(int times) {
-    srand(time(0));
-    cout << "\nRolling dice " << times << " times:" << endl;
-
-    for (int i = 0; i < times; ++i) {
-        int roll = rand() % 6 + 1; // 1 to 6
-        cout << "Roll " << (i + 1) << ": " << roll << endl;
-    }
-}
-
 void controlPlayer(vector<vector<Vertex *>> &map, char input)
 {
+    int spacePress;
+    bool validInput = false;
+
     switch (input)
     {
-    case 'w':
+    case 'g':
+        spacePress = countRapidSpacePresses();
+        cout << spacePress;
+        rollDice(spacePress);
+        moveEnemy(map, 1);
+        break;
+        case 'w':
         movePlayerUp(map, currentPos);
+        validInput = true;
         removePlayerPoint(1);
+        moveEnemy(map, 1);
         break;
-    case 's':
+        case 's':
         movePlayerDown(map, currentPos);
+        validInput = true;
         removePlayerPoint(1);
+        moveEnemy(map, 1);
         break;
-    case 'a':
+        case 'a':
         movePlayerLeft(map, currentPos);
+        validInput = true;
         removePlayerPoint(1);
+        moveEnemy(map, 1);
         break;
-    case 'd':
+        case 'd':
         movePlayerRight(map, currentPos);
+        validInput = true;
         removePlayerPoint(1);
+        moveEnemy(map, 1);
         break;
-    case 'i':
+        case 'i':
         shootPlayerUp(map, currentPos);
+        validInput = true;
         removePlayerPoint(6);
+        moveEnemy(map, 3);
         break;
-    case 'k':
+        case 'k':
         shootPlayerDown(map, currentPos);
+        validInput = true;
         removePlayerPoint(6);
+        moveEnemy(map, 3);
         break;
-    case 'j':
+        case 'j':
         shootPlayerLeft(map, currentPos);
+        validInput = true;
         removePlayerPoint(6);
+        moveEnemy(map, 3);
         break;
-    case 'l':
+        case 'l':
         shootPlayerRight(map, currentPos);
+        validInput = true;
         removePlayerPoint(6);
+        moveEnemy(map, 3);
         break;
     }
 
-    clearScreen();
-    printMap(map);
+    if (validInput)
+    {
+        clearScreen();
+        printMap(map);
+    }
 }
