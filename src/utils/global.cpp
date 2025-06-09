@@ -9,7 +9,8 @@ vector<Dir> directions = {
     {1, 0, "down"},
     {0, -1, "left"},
     {0, 1, "right"}};
-Queue enemyMovement;
+enemyQueue enemyMovement;
+letterQueue word;
 
 bool playerWin = false;
 bool enemyWin = false;

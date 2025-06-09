@@ -7,22 +7,22 @@ void createQueue() {
     word.top = 0;
 }
 
-bool isEmpty() {
+bool isCharEmpty() {
     return word.top == 0;
 }
 
-bool isFull() {
+bool isCharFull() {
     return word.top >= MAX_CHAR_LENGTH;
 }
 
 void insertChar(char nilai) {
-    if (!isFull()) {
+    if (!isCharFull()) {
         word.letters[word.top++] = nilai;
     }
 }
 
 void removeChar() {
-    if (!isEmpty()) {
+    if (!isCharEmpty()) {
         for (int i = 1; i < word.top; i++) {
             word.letters[i - 1] = word.letters[i];
         }
@@ -31,7 +31,7 @@ void removeChar() {
 }
 
 char getFirstChar() {
-    if (!isEmpty()) {
+    if (!isCharEmpty()) {
         return word.letters[0];
     }
     return '\0';
@@ -51,7 +51,7 @@ void runMonkeytype(char* selectedWord) {
 
     cout << "Type the word: " << selectedWord << endl;
 
-    while (!isEmpty()) {
+    while (!isCharEmpty()) {
         char expected = getFirstChar();
         char input = _getch();
         cout << input;
@@ -68,5 +68,5 @@ void runMonkeytype(char* selectedWord) {
     cout << "\nKata berhasil diketik dengan benar!" << endl;
     if (totalIncorrect > 0) { cout << "Total salah ketik: " << totalIncorrect << endl; }
 
-    return totalIncorrect; // preparasi buat sistem poin
+    // return totalIncorrect; // preparasi buat sistem poin
 }
