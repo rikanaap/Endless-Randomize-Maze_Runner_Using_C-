@@ -1,6 +1,6 @@
 #ifndef DESIGN_HPP
 #define DESIGN_HPP
-#include "struct.hpp"
+#include "var\struct.hpp"
 
 void menuUtama();
 void runMap(int rows, int cols, GameConfig config);
