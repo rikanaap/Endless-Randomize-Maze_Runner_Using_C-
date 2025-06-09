@@ -65,5 +65,4 @@ void runMonkeytype(){
     }
 
     cout << "\nKata berhasil diketik dengan benar!\n";
-    return 0;
 }
