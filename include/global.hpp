@@ -14,5 +14,5 @@ extern int playerPoint;
 extern bool playerWin;
 extern bool enemyWin;
 extern vector<Dir> directions;
-extern Queue enemyMovement;
+extern enemyQueue enemyMovement;
 

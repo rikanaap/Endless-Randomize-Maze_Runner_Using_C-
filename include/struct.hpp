@@ -33,10 +33,15 @@ struct Dir
     string name;
 };
 
-struct Queue
+struct enemyQueue
 {
     int top = 0;
     char isi[15];
+};
+
+struct letterQueue {
+    int top;
+    char letters[MAX_CHAR_LENGTH];
 };
 
 #endif
