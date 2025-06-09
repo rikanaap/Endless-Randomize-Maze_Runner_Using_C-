@@ -3,6 +3,6 @@
 
 #include "package.hpp"
 
-void runMonkeytype();
+void runMonkeytype(char* selectedWord);
 
 #endif 
