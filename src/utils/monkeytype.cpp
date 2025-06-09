@@ -51,17 +51,15 @@ void runMonkeytype(char* selectedWord) {
 
     cout << "Type the word: " << selectedWord << endl;
 
-    while (!isCharEmpty()) {
+    while (!isEmpty()) {
         char expected = getFirstChar();
         char input = _getch();
-        cout << input;
 
         if (input == expected) {
+            cout << input;
             removeChar();
         } else {
-            cout << "\nSalah ketik! Ulangi dari awal.\n";
             totalIncorrect++;
-            resetQueue(selectedWord);
         }
     }
 
