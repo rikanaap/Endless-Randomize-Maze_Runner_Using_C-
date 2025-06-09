@@ -1,7 +1,7 @@
-#include "package.hpp"
-#include "game.hpp"
-#include "player.hpp"
-#include "enemy.hpp"
+#include "package\package.hpp"
+#include "main\game.hpp"
+#include "main\player.hpp"
+#include "main\enemy.hpp"
 
 using namespace std;
 

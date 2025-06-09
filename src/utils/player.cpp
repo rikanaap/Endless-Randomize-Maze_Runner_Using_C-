@@ -4,7 +4,7 @@
 #include "var\env.hpp"
 #include "var\global.hpp"
 #include "main\enemy.hpp"
-#include "game.hpp"
+#include "main\game.hpp"
 
 int playerPoint = 0;
 
