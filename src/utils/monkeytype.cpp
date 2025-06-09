@@ -45,6 +45,7 @@ void resetQueue(const char* letters) {
 }
 
 void runMonkeytype(char* selectedWord) {
+    int totalIncorrect = 0;
     createQueue();
     resetQueue(selectedWord);
 
@@ -59,9 +60,13 @@ void runMonkeytype(char* selectedWord) {
             removeChar();
         } else {
             cout << "\nSalah ketik! Ulangi dari awal.\n";
+            totalIncorrect++;
             resetQueue(selectedWord);
         }
     }
 
-    cout << "\nKata berhasil diketik dengan benar!\n";
+    cout << "\nKata berhasil diketik dengan benar!" << endl;
+    if (totalIncorrect > 0) { cout << "Total salah ketik: " << totalIncorrect << endl; }
+
+    return totalIncorrect; // preparasi buat sistem poin
 }
