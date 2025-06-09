@@ -4,20 +4,20 @@
 
 void menuLevel()
 {
-    cout << "====================" << endl;
-    cout << "    Pilih Level   " << endl;
-    cout << "====================" << endl;
-    cout << "1. Level 1" << endl;
-    cout << "2. Level 2" << endl;
-    cout << "3. Level 3" << endl;
-    cout << "4. Level 4" << endl;
-    cout << "5. Level 5" << endl;
-    cout << "6. Back to Main Menu" << endl;
+    cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
+    cout << "                          🏃 PILIH LEVEL 🏃" << endl;
+    cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
+    cout << "1. Level 1️⃣" << endl;
+    cout << "2. Level 2️⃣" << endl;
+    cout << "3. Level 3️⃣" << endl;
+    cout << "4. Level 4️⃣" << endl;
+    cout << "5. Level 5️⃣" << endl;
+    cout << "6. Kembali ke Menu Utama" << endl;
 
     int choice ; cout << "Tentukan pilihan level (1-6): ";
     cin >> choice;
     if (choice < 1 || choice > 6) {
-        cout << "Maaf level yang dipilih tidak tersedia. Pilih ulang level" << endl;
+        cout << "Maaf level yang dipilih tidak tersedia. Pilih ulang level.🔄" << endl;
         return;
     }
     clearScreen();
