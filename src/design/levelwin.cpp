@@ -21,7 +21,6 @@ void tampilanMenang() {
     switch (pilihan) {
         case 8:
             clearScreen();
-            menuLevel();
             break;
         default:
             cout << "Pilihan tidak valid.\n";
