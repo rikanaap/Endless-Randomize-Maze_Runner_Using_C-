@@ -6,7 +6,7 @@ CXXFLAGS = -std=c++17 -Wall -Iinclude
 TARGET = mazeRunner
 
 # Source structure
-SRCDIRS := src/design src/utils src/var
+SRCDIRS := src/design src/utils src/utils/game src/var
 SOURCES := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.cpp))
 OBJECTS := $(SOURCES:.cpp=.o)
 
