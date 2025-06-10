@@ -168,58 +168,81 @@ void markConnected(Vertex *start)
 
 void connectUnreachableVertices(vector<vector<Vertex *>> &map, int rows, int cols)
 {
+    bool progress = true;
+
+    while (progress)
+    {
+        progress = false;
+        for (int i = 0; i < rows; ++i)
+        {
+            for (int j = 0; j < cols; ++j)
+            {
+                Vertex *v = map[i][j];
+                if (v->connected)
+                    continue;
+
+                vector<Dir> neighborDirs;
+                for (auto &d : directions)
+                {
+                    int ni = i + d.dx;
+                    int nj = j + d.dy;
+                    if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && map[ni][nj]->connected)
+                        neighborDirs.push_back(d);
+                }
+
+                if (!neighborDirs.empty())
+                {
+                    Dir d = neighborDirs[randomInt(0, neighborDirs.size() - 1)];
+                    Vertex *neighbor = map[i + d.dx][j + d.dy];
+                    int weight = 1;
+
+                    if (d.name == "up")
+                    {
+                        v->up = neighbor;
+                        v->weightUp = weight;
+                        neighbor->down = v;
+                        neighbor->weightDown = weight;
+                    }
+                    else if (d.name == "down")
+                    {
+                        v->down = neighbor;
+                        v->weightDown = weight;
+                        neighbor->up = v;
+                        neighbor->weightUp = weight;
+                    }
+                    else if (d.name == "left")
+                    {
+                        v->left = neighbor;
+                        v->weightLeft = weight;
+                        neighbor->right = v;
+                        neighbor->weightRight = weight;
+                    }
+                    else if (d.name == "right")
+                    {
+                        v->right = neighbor;
+                        v->weightRight = weight;
+                        neighbor->left = v;
+                        neighbor->weightLeft = weight;
+                    }
+
+                    v->connected = true;
+                    progress = true;
+                }
+            }
+        }
+    }
+}
+
+void filterUnreachableTiles(vector<vector<Vertex *>> &map, int rows, int cols)
+{
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
         {
             Vertex *v = map[i][j];
-            if (v->connected)
-                continue;
-
-            vector<Dir> neighborDirs;
-            for (auto &d : directions)
+            if (!v->connected)
             {
-                int ni = i + d.dx;
-                int nj = j + d.dy;
-                if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && map[ni][nj]->connected)
-                    neighborDirs.push_back(d);
-            }
-
-            if (!neighborDirs.empty())
-            {
-                Dir d = neighborDirs[randomInt(0, neighborDirs.size() - 1)];
-                Vertex *neighbor = map[i + d.dx][j + d.dy];
-                int weight = 1;
-
-                if (d.name == "up")
-                {
-                    v->up = neighbor;
-                    v->weightUp = weight;
-                    neighbor->down = v;
-                    neighbor->weightDown = weight;
-                }
-                else if (d.name == "down")
-                {
-                    v->down = neighbor;
-                    v->weightDown = weight;
-                    neighbor->up = v;
-                    neighbor->weightUp = weight;
-                }
-                else if (d.name == "left")
-                {
-                    v->left = neighbor;
-                    v->weightLeft = weight;
-                    neighbor->right = v;
-                    neighbor->weightRight = weight;
-                }
-                else if (d.name == "right")
-                {
-                    v->right = neighbor;
-                    v->weightRight = weight;
-                    neighbor->left = v;
-                    neighbor->weightLeft = weight;
-                }
-
-                v->connected = true;
+                delete v;
+                map[i][j] = nullptr;
             }
         }
 }
@@ -231,6 +254,7 @@ void updateWeightsByCoordinates(vector<vector<Vertex *>> &map, int rows, int col
         for (int j = 0; j < cols; ++j)
         {
             Vertex *v = map[i][j];
+            if (!v) continue;
 
             if (v->up)
             {
@@ -269,51 +293,37 @@ void printMap(const vector<vector<Vertex *>> &map)
         for (int j = 0; j < cols; ++j)
         {
             Vertex *v = map[i][j];
+            if (!v) continue;
+
             int vi = i * 2;
             int vj = j * 4;
 
-            // Default node
             visual[vi][vj] = "⬜";
 
-            // Start & End
-            if ((i == start_v->x && j == start_v->y))
+            if (i == start_v->x && j == start_v->y)
                 visual[vi][vj] = "🚪";
-            
-            if ((i == end_v->x && j == end_v->y))
+
+            if (i == end_v->x && j == end_v->y)
                 visual[vi][vj] = "🏁";
 
-            // Player position
             if (i == currentPos.first && j == currentPos.second)
                 visual[vi][vj] = "😯";
-            
-            // Enemy position
+
             if (i == enemyPos.first && j == enemyPos.second)
                 visual[vi][vj] = "😈";
 
             if (v->weightRight > 0)
-            {
                 for (int w = 0; w < v->weightRight; ++w)
-                {
-                    int pos = vj + w + 1;
-                    if (pos < visCols)
-                        visual[vi][pos] = v->right ? "⬜" : "⬜";
-                }
-            }
+                    if (vj + w + 1 < visCols)
+                        visual[vi][vj + w + 1] = "⬜";
 
             if (v->weightDown > 0)
-            {
                 for (int w = 0; w < v->weightDown; ++w)
-                {
-                    int pos = vi + w + 1;
-                    if (pos < visRows)
-                        visual[pos][vj] = v->down ? "⬜" : "⬜";
-                }
-            }
+                    if (vi + w + 1 < visRows)
+                        visual[vi + w + 1][vj] = "⬜";
+
             if (v->shoot == true)
-            {
-                 visual[vi][vj] = "🟥";
-            }
-            
+                visual[vi][vj] = "🟥";
         }
 
     for (auto &row : visual)
@@ -321,45 +331,6 @@ void printMap(const vector<vector<Vertex *>> &map)
         for (auto &cell : row)
             cout << cell;
         cout << "\n";
-    }
-}
-
-void printAllVertexConnections(const vector<vector<Vertex *>> &map)
-{
-    cout << "=== Vertex Connection Details ===\n";
-    for (size_t i = 0; i < map.size(); ++i)
-    {
-        for (size_t j = 0; j < map[0].size(); ++j)
-        {
-            Vertex *v = map[i][j];
-            cout << "Vertex (" << v->x << ", " << v->y << "):\n";
-
-            cout << "  Up: ";
-            if (v->up)
-                cout << "(" << v->up->x << ", " << v->up->y << ") with weight " << v->weightUp << "\n";
-            else
-                cout << "None\n";
-
-            cout << "  Down: ";
-            if (v->down)
-                cout << "(" << v->down->x << ", " << v->down->y << ") with weight " << v->weightDown << "\n";
-            else
-                cout << "None\n";
-
-            cout << "  Left: ";
-            if (v->left)
-                cout << "(" << v->left->x << ", " << v->left->y << ") with weight " << v->weightLeft << "\n";
-            else
-                cout << "None\n";
-
-            cout << "  Right: ";
-            if (v->right)
-                cout << "(" << v->right->x << ", " << v->right->y << ") with weight " << v->weightRight << "\n";
-            else
-                cout << "None\n";
-
-            cout << "-----------------------------\n";
-        }
     }
 }
 
@@ -371,7 +342,8 @@ pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &ma
         int sy = randomInt(0, cols - 1);
         int ex = randomInt(0, rows - 1);
         int ey = randomInt(0, cols - 1);
-        if (sx != ex || sy != ey)
+
+        if ((sx != ex || sy != ey) && map[sx][sy] && map[ex][ey])
         {
             start_v = map[sx][sy];
             end_v = map[ex][ey];
@@ -393,9 +365,10 @@ vector<vector<Vertex *>> generateMap(int rows, int cols, int noise)
     createPath(start, end, map, rows, cols);
     markConnected(start);
     connectUnreachableVertices(map, rows, cols);
+    markConnected(start);
+    filterUnreachableTiles(map, rows, cols);
     updateWeightsByCoordinates(map, rows, cols);
 
     printMap(map);
-
     return map;
 }
