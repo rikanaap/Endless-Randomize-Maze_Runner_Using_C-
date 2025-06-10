@@ -19,7 +19,7 @@ void runMap(int rows, int cols, GameConfig config)
     {
         input = getChar();
         input = tolower(input);
-        if(input == 'q') {
+        if(input == 8) {
             clearScreen();
             return;
         }

@@ -183,7 +183,7 @@ void printTutorial()
     cout << "\n🪙 Point: " << playerPoint;
     if (playerPoint < 4)
         "\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑";
-    cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[q: quit]";
+    cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]\n\n[backspace: quit]";
 }
 
 void controlPlayer(char input, GameConfig config)
