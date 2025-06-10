@@ -1,7 +1,7 @@
-#include "package.hpp"
-#include "utils.hpp"
-#include "design.hpp"
-#include "env.hpp"
+#include "package\package.hpp"
+#include "main\utils.hpp"
+#include "main\design.hpp"
+#include "var\env.hpp"
 
 int main()
 {
