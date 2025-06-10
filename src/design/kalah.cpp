@@ -5,6 +5,7 @@ using namespace std;
 
 void tampilanKalah()
 {
+    clearScreen();
     cout << "\n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
     cout << "                     \n";
@@ -12,21 +13,16 @@ void tampilanKalah()
     cout << "                     \n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
     cout << "\n";
-    cout << "[1] 🔁 Main Lagi" << endl;
-    cout << "[2] 🚪 Keluar" << endl;
+    cout << "[Backspace] 🚪 Kembali ke menu level" << endl;
     cout << "Pilihanmu: ";
 
     char pilihan;
     pilihan = getChar();
     switch (pilihan)
     {
-    case '1':
+    case 8:
         clearScreen();
-        break;
-    case '2':
-        cout << "\nTerima kasih telah bermain Maze Runner!\n";
-        wait(800);
-        exit(0);
+        menuLevel();
         break;
     default:
         cout << "Pilihan tidak valid.\n";

@@ -13,21 +13,15 @@ void tampilanMenang() {
     cout << "🧠  Langkahmu luar biasa!" << endl;
     cout << "💡  Logika dan kesabaranmu patut diacungi jempol." << endl;
     cout << endl;
-    cout << "[1] 🔁 Main Lagi" << endl;
-    cout << "[2] 🚪 Keluar" << endl;
+    cout << "[Backspace] 🚪 Kembali ke menu level" << endl;
     cout << "Pilihanmu: ";
 
     char pilihan;
     pilihan = getChar();
     switch (pilihan) {
-        case '1':
+        case 8:
             clearScreen();
-            menuLevel(); // panggil ulang pemilihan level
-            break;
-        case '2':
-            cout << "\nTerima kasih telah bermain Maze Runner!\n";
-            wait(800);
-            exit(0);
+            menuLevel();
             break;
         default:
             cout << "Pilihan tidak valid.\n";
