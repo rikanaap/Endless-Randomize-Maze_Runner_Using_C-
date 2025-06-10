@@ -12,6 +12,9 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 using namespace std::chrono;
@@ -39,9 +42,12 @@ void wait(int seconds)
 
 int main()
 {
-    // void keyboard() {
+    #ifdef _WIN32
+        SetConsoleOutputCP(CP_UTF8);
+    #endif
+
     clearScreen();
-    cout << "           Coba Lihat Keyboard Anda" << endl
+    cout << "       👇 Coba Lihat Keyboard Anda 👇" << endl
          << endl;
     wait(500);
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
@@ -56,11 +62,13 @@ int main()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+         << endl;
     char input;
     input = getChar();
+
     clearScreen();
-    cout << "1. Simpan jari manis kiri pada huruf A" << endl << endl;
+    cout << "1. Simpan jari manis kiri pada huruf A 🤚" << endl << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
     keys = "⬛\t  Q  W  E  R  T  Y  U  I  O  P \t⬛\n⬛\t   A  S  D  F  G  H  J  K  L \t⬛\n⬛\t    Z  X  C  V  B  N  M\t\t⬛";
     for (char c : keys)
@@ -73,10 +81,12 @@ int main()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+         << endl;
     input = getChar();
     
     clearScreen();
-    cout << "2. Simpan jari tengah kiri pada huruf W" << endl << endl;
+    cout << "2. Simpan jari tengah kiri pada huruf W 🤚" << endl << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
     keys = "⬛\t  Q  W  E  R  T  Y  U  I  O  P \t⬛\n⬛\t   A  S  D  F  G  H  J  K  L \t⬛\n⬛\t    Z  X  C  V  B  N  M\t\t⬛";
     for (char c : keys)
@@ -89,10 +99,12 @@ int main()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+         << endl;
     input = getChar();
     
     clearScreen();
-    cout << "3. Simpan jari telunjuk kiri pada huruf D" << endl << endl;
+    cout << "3. Simpan jari telunjuk kiri pada huruf D 🤚" << endl << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
     keys = "⬛\t  Q  W  E  R  T  Y  U  I  O  P \t⬛\n⬛\t   A  S  D  F  G  H  J  K  L \t⬛\n⬛\t    Z  X  C  V  B  N  M\t\t⬛";
     for (char c : keys)
@@ -105,10 +117,12 @@ int main()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+         << endl;
     input = getChar();
     
     clearScreen();
-    cout << "4. Simpan jari telunjuk kanan pada huruf J" << endl << endl;
+    cout << "4. Simpan jari telunjuk kanan pada huruf J ✋" << endl << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl ;
     keys = "⬛\t  Q  W  E  R  T  Y  U  I  O  P \t⬛\n⬛\t   A  S  D  F  G  H  J  K  L \t⬛\n⬛\t    Z  X  C  V  B  N  M\t\t⬛";
     for (char c : keys)
@@ -121,10 +135,12 @@ int main()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+         << endl;
     input = getChar();
 
     clearScreen();
-    cout << "5. Simpan jari tengah kanan pada huruf I" << endl << endl;
+    cout << "5. Simpan jari tengah kanan pada huruf I ✋" << endl << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl ;
     keys = "⬛\t  Q  W  E  R  T  Y  U  I  O  P \t⬛\n⬛\t   A  S  D  F  G  H  J  K  L \t⬛\n⬛\t    Z  X  C  V  B  N  M\t\t⬛";
     for (char c : keys)
@@ -137,10 +153,12 @@ int main()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+         << endl;
     input = getChar();
 
     clearScreen();
-    cout << "6. Simpan jari manis kanan pada huruf L" << endl << endl;
+    cout << "6. Simpan jari manis kanan pada huruf L ✋" << endl << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl ;
     keys = "⬛\t  Q  W  E  R  T  Y  U  I  O  P \t⬛\n⬛\t   A  S  D  F  G  H  J  K  L \t⬛\n⬛\t    Z  X  C  V  B  N  M\t\t⬛";
     for (char c : keys)
@@ -152,6 +170,10 @@ int main()
     }
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
+         << endl;
+    cout << "❗ Pertahankan posisi jari Anda pada keyboard untuk memainkan game sampai selesai ❗" << endl
+         << endl;
+    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
          << endl;
     input = getChar();
 
