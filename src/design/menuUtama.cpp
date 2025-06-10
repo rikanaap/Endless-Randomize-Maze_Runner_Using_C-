@@ -17,7 +17,7 @@ void menuUtama()
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << endl;
             cout << "   F | Mulai Permainan 🎮" << endl;
-            cout << "   ⌫ | Keluar ⛔" << endl;
+            cout << "   Backspace | Keluar ⛔" << endl;
             cout << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << "Silakan pilih menu: ";

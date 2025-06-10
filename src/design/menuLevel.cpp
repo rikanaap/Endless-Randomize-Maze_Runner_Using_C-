@@ -15,7 +15,7 @@ void menuLevel()
         cout << "   T | Level 3️⃣" << endl;
         cout << "   Y | Level 4️⃣" << endl;
         cout << "   U | Level 5️⃣" << endl;
-        cout << "   ⌫ | Kembali ke Menu Utama ◀️" << endl;
+        cout << "   Backspace | Kembali ke Menu Utama ◀️" << endl;
 
         int choice;
         cout << "Tentukan pilihan level: ";
