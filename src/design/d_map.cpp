@@ -19,10 +19,10 @@ void runMap(int rows, int cols, GameConfig config)
     {
         input = getChar();
         input = tolower(input);
-        if(input == 8) {
-            clearScreen();
-            return;
-        }
+        //if(input == 8) {
+        //    clearScreen();
+        //    return;
+        //}
 
         controlPlayer(input, config);
         if(enemyWin) return tampilanKalah();
