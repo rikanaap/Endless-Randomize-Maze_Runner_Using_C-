@@ -214,8 +214,8 @@ void controlPlayer(char input, GameConfig config)
             break;
 
         case 2:
-            char word[] = "Makan nasi di udang di kampang";
-            runMonkeytype(word);
+            char accuracyWords[] = "makan nasi di udang di kampang";
+            runMonkeytype(accuracyWords);
             break;
         }
         validInput = true;

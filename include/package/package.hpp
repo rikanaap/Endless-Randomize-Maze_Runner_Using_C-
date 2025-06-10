@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <queue>
+#include <cmath>
 #include <algorithm>
 #include <unordered_map>
 #include <cstdlib>

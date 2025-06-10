@@ -2,6 +2,8 @@
 #include "main\utils.hpp"
 #include "var\global.hpp"
 #include "main\game.hpp"
+#include "main\player.hpp"
+#include "main\enemy.hpp"
 
 void createQueue() {
     word.top = 0;
@@ -44,27 +46,60 @@ void resetQueue(const char* letters) {
     }
 }
 
+
+int calculatePoints(int totalIncorrect, double duration_seconds) {
+    double points = 10.0 - (totalIncorrect * 2.0) - max(0.0, (duration_seconds - 15.0) * 0.2);
+    
+    int finalPoints = max(0, (int)round(points));
+    
+    return finalPoints;
+}
+
 void runMonkeytype(char* selectedWord) {
     int totalIncorrect = 0;
+    int totalChars = strlen(selectedWord);
+    
     createQueue();
     resetQueue(selectedWord);
 
-    cout << "Type the word: " << selectedWord << endl;
+    cout << "Ketik kalimat ini: " << "\033[32m" << selectedWord << "\033[0m" << endl;
+    cout << "> ";
+
+    auto start = high_resolution_clock::now();
 
     while (!isCharEmpty()) {
         char expected = getFirstChar();
         char input = _getch();
 
         if (input == expected) {
-            cout << input;
+            cout << "\033[32m" << input << "\033[0m";
             removeChar();
         } else {
             totalIncorrect++;
         }
     }
 
-    cout << "\nKata berhasil diketik dengan benar!" << endl;
-    if (totalIncorrect > 0) { cout << "Total salah ketik: " << totalIncorrect << endl; }
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+    double duration_seconds = duration.count() / 1000.0;
 
-    // return totalIncorrect; // preparasi buat sistem poin
+    int points = calculatePoints(totalIncorrect, duration_seconds);
+    float enemyMove = (float)totalIncorrect / 2.0f;
+
+    cout << "\n\nWaktu yang dibutuhkan: " << duration_seconds << " detik" << endl;
+    if (totalIncorrect > 0) { 
+        cout << "Total typo: " << totalIncorrect << endl; 
+    }
+    
+    addPlayerPoint(points);
+    moveEnemy(enemyMove);
+
+    if(points > 0) {
+        cout << "🪙  Kamu mendapatkan " << points << " poin 🍻🍻" << endl;
+    }
+    if(enemyMove > 0) {
+        cout << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️" << endl;
+    }
+
+    wait(5000);
 }
