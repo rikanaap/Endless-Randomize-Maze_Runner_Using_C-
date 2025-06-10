@@ -9,41 +9,46 @@ void menuLevel()
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
         cout << "                          " << endl;
         cout << "                          🏃 PILIH LEVEL 🏃" << endl;
+        cout << "                          " << endl;
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
+        cout << endl;
         cout << "   E | Level 1️⃣" << endl;
         cout << "   R | Level 2️⃣" << endl;
         cout << "   T | Level 3️⃣" << endl;
         cout << "   Y | Level 4️⃣" << endl;
         cout << "   U | Level 5️⃣" << endl;
         cout << "   Backspace | Kembali ke Menu Utama ◀️" << endl;
-
-        int choice;
+        cout << endl;
+        cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
         cout << "Tentukan pilihan level: ";
+        int choice;
         choice = getChar();
         choice = tolower(choice);
 
-        cout << endl; clearScreen();
+        cout << endl;
+        clearScreen();
         switch (choice)
         {
         case 'e':
-            runMap(3, 3, {true, true}); // Adjusting rows and cols based on level
+            runMap(3, 3, {true, true, 1}); // Adjusting rows and cols based on level
             break;
         case 'r':
-            runMap(6, 6, {true, false});
+            runMap(6, 6, {true, false, 2});
             break;
         case 't':
-            runMap(9, 9, {false, true});
+            runMap(9, 9, {false, true, 3});
             break;
         case 'y':
-            runMap(12, 12, {true, true});
+            runMap(12, 12, {true, true, 4});
             break;
         case 'u':
-            runMap(15, 15, {false, true});
+            runMap(15, 15, {false, true, 5});
             break;
-        case 8: return; // Exit to main menu
+        case 8:
+            return; // Exit to main menu
         default:
             cout << "Tidak ada pilihan, mohon coba lagi!!";
-            wait(1);
+            wait(500);
             break;
         }
         clearScreen();

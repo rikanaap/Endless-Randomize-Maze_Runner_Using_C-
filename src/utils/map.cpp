@@ -1,6 +1,7 @@
 #include "main\map.hpp"
 #include "main\player.hpp"
 #include "main\utils.hpp"
+#include "var\global.hpp"
 
 vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
 {
@@ -15,13 +16,13 @@ vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
     return map;
 }
 
-void addNoise(vector<vector<Vertex *>> &map, int rows, int cols, int noiseCount)
+void addNoise(int rows, int cols, int noiseCount)
 {
     for (int n = 0; n < noiseCount; ++n)
     {
         int i = randomInt(0, rows - 1);
         int j = randomInt(0, cols - 1);
-        Vertex *v = map[i][j];
+        Vertex *v = runningMap[i][j];
 
         vector<Dir> possibleDirs;
         for (auto &d : directions)
@@ -30,7 +31,7 @@ void addNoise(vector<vector<Vertex *>> &map, int rows, int cols, int noiseCount)
             int nj = j + d.dy;
             if (ni >= 0 && ni < rows && nj >= 0 && nj < cols)
             {
-                Vertex *nbr = map[ni][nj];
+                Vertex *nbr = runningMap[ni][nj];
                 bool connected = false;
                 if (d.name == "up" && v->up == nbr)
                     connected = true;
@@ -49,7 +50,7 @@ void addNoise(vector<vector<Vertex *>> &map, int rows, int cols, int noiseCount)
         if (!possibleDirs.empty())
         {
             Dir d = possibleDirs[randomInt(0, possibleDirs.size() - 1)];
-            Vertex *nbr = map[i + d.dx][j + d.dy];
+            Vertex *nbr = runningMap[i + d.dx][j + d.dy];
             int weight = 1;
 
             if (d.name == "up")
@@ -84,7 +85,7 @@ void addNoise(vector<vector<Vertex *>> &map, int rows, int cols, int noiseCount)
     }
 }
 
-void createPath(Vertex *current, Vertex *end, vector<vector<Vertex *>> &map, int rows, int cols)
+void createPath(Vertex *current, Vertex *end, int rows, int cols)
 {
     current->visited = true;
     if (current == end)
@@ -98,9 +99,9 @@ void createPath(Vertex *current, Vertex *end, vector<vector<Vertex *>> &map, int
         int nx = current->x + d.dx;
         int ny = current->y + d.dy;
 
-        if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && !map[nx][ny]->visited)
+        if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && !runningMap[nx][ny]->visited)
         {
-            Vertex *neighbor = map[nx][ny];
+            Vertex *neighbor = runningMap[nx][ny];
             int weight = 1;
 
             if (d.name == "up")
@@ -132,7 +133,7 @@ void createPath(Vertex *current, Vertex *end, vector<vector<Vertex *>> &map, int
                 neighbor->weightLeft = weight;
             }
 
-            createPath(neighbor, end, map, rows, cols);
+            createPath(neighbor, end, rows, cols);
             return;
         }
     }
@@ -159,14 +160,14 @@ void markConnected(Vertex *start)
         {
             if (nbr && w > 0 && !nbr->connected)
             {
-                nbr->connected = true; 
+                nbr->connected = true;
                 q.push(nbr);
             }
         }
     }
 }
 
-void connectUnreachableVertices(vector<vector<Vertex *>> &map, int rows, int cols)
+void connectUnreachableVertices(int rows, int cols)
 {
     bool progress = true;
 
@@ -177,7 +178,7 @@ void connectUnreachableVertices(vector<vector<Vertex *>> &map, int rows, int col
         {
             for (int j = 0; j < cols; ++j)
             {
-                Vertex *v = map[i][j];
+                Vertex *v = runningMap[i][j];
                 if (v->connected)
                     continue;
 
@@ -186,14 +187,14 @@ void connectUnreachableVertices(vector<vector<Vertex *>> &map, int rows, int col
                 {
                     int ni = i + d.dx;
                     int nj = j + d.dy;
-                    if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && map[ni][nj]->connected)
+                    if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && runningMap[ni][nj]->connected)
                         neighborDirs.push_back(d);
                 }
 
                 if (!neighborDirs.empty())
                 {
                     Dir d = neighborDirs[randomInt(0, neighborDirs.size() - 1)];
-                    Vertex *neighbor = map[i + d.dx][j + d.dy];
+                    Vertex *neighbor = runningMap[i + d.dx][j + d.dy];
                     int weight = 1;
 
                     if (d.name == "up")
@@ -233,28 +234,29 @@ void connectUnreachableVertices(vector<vector<Vertex *>> &map, int rows, int col
     }
 }
 
-void filterUnreachableTiles(vector<vector<Vertex *>> &map, int rows, int cols)
+void filterUnreachableTiles(int rows, int cols)
 {
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
         {
-            Vertex *v = map[i][j];
+            Vertex *v = runningMap[i][j];
             if (!v->connected)
             {
                 delete v;
-                map[i][j] = nullptr;
+                runningMap[i][j] = nullptr;
             }
         }
 }
 
-void updateWeightsByCoordinates(vector<vector<Vertex *>> &map, int rows, int cols)
+void updateWeightsByCoordinates(int rows, int cols)
 {
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
-            Vertex *v = map[i][j];
-            if (!v) continue;
+            Vertex *v = runningMap[i][j];
+            if (!v)
+                continue;
 
             if (v->up)
             {
@@ -280,8 +282,9 @@ void updateWeightsByCoordinates(vector<vector<Vertex *>> &map, int rows, int col
     }
 }
 
-void printMap(const vector<vector<Vertex *>> &map)
+void printMap()
 {
+    const vector<vector<Vertex *>> &map = runningMap;
     int rows = map.size();
     int cols = map[0].size();
 
@@ -293,7 +296,8 @@ void printMap(const vector<vector<Vertex *>> &map)
         for (int j = 0; j < cols; ++j)
         {
             Vertex *v = map[i][j];
-            if (!v) continue;
+            if (!v)
+                continue;
 
             int vi = i * 2;
             int vj = j * 4;
@@ -334,7 +338,47 @@ void printMap(const vector<vector<Vertex *>> &map)
     }
 }
 
-pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &map, int rows, int cols)
+void printAllVertexConnections()
+{
+    const vector<vector<Vertex *>> map = runningMap;
+    cout << "=== Vertex Connection Details ===\n";
+    for (size_t i = 0; i < map.size(); ++i)
+    {
+        for (size_t j = 0; j < map[0].size(); ++j)
+        {
+            Vertex *v = map[i][j];
+            cout << "Vertex (" << v->x << ", " << v->y << "):\n";
+
+            cout << "  Up: ";
+            if (v->up)
+                cout << "(" << v->up->x << ", " << v->up->y << ") with weight " << v->weightUp << "\n";
+            else
+                cout << "None\n";
+
+            cout << "  Down: ";
+            if (v->down)
+                cout << "(" << v->down->x << ", " << v->down->y << ") with weight " << v->weightDown << "\n";
+            else
+                cout << "None\n";
+
+            cout << "  Left: ";
+            if (v->left)
+                cout << "(" << v->left->x << ", " << v->left->y << ") with weight " << v->weightLeft << "\n";
+            else
+                cout << "None\n";
+
+            cout << "  Right: ";
+            if (v->right)
+                cout << "(" << v->right->x << ", " << v->right->y << ") with weight " << v->weightRight << "\n";
+            else
+                cout << "None\n";
+
+            cout << "-----------------------------\n";
+        }
+    }
+}
+
+pair<Vertex *, Vertex *> getRandomStartAndEnd(int rows, int cols)
 {
     do
     {
@@ -343,11 +387,11 @@ pair<Vertex *, Vertex *> getRandomStartAndEnd(const vector<vector<Vertex *>> &ma
         int ex = randomInt(0, rows - 1);
         int ey = randomInt(0, cols - 1);
 
-        if ((sx != ex || sy != ey) && map[sx][sy] && map[ex][ey])
+        if ((sx != ex || sy != ey) && runningMap[sx][sy] && runningMap[ex][ey])
         {
-            start_v = map[sx][sy];
-            end_v = map[ex][ey];
-            map[ex][ey]->endVertex = true;
+            start_v = runningMap[sx][sy];
+            end_v = runningMap[ex][ey];
+            runningMap[ex][ey]->endVertex = true;
         }
     } while (start_v == nullptr || end_v == nullptr);
     return {start_v, end_v};
@@ -357,18 +401,19 @@ vector<vector<Vertex *>> generateMap(int rows, int cols, int noise)
 {
     srand(time(0));
     auto map = initializeVertexMap(rows, cols);
-    addNoise(map, rows, cols, noise);
-
-    auto [start, end] = getRandomStartAndEnd(map, rows, cols);
+    runningMap = map;
+    addNoise(rows, cols, noise);
+    
+    auto [start, end] = getRandomStartAndEnd(rows, cols);
     currentPos = {start->x, start->y};
-
-    createPath(start, end, map, rows, cols);
+    
+    createPath(start, end, rows, cols);
     markConnected(start);
-    connectUnreachableVertices(map, rows, cols);
+    connectUnreachableVertices(rows, cols);
     markConnected(start);
-    filterUnreachableTiles(map, rows, cols);
-    updateWeightsByCoordinates(map, rows, cols);
+    filterUnreachableTiles(rows, cols);
+    updateWeightsByCoordinates(rows, cols);
+    printMap();
 
-    printMap(map);
     return map;
 }

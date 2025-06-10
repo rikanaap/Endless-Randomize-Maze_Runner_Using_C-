@@ -7,7 +7,7 @@
 
 extern Vertex* start_v;
 extern Vertex* end_v;
-extern vector<vector<Vertex*>> current_map;
+extern vector<vector<Vertex*>> runningMap;
 extern pair<int, int> currentPos;
 extern pair<int, int> enemyPos;
 extern int playerPoint;

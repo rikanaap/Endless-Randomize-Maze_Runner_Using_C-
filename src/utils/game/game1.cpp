@@ -2,6 +2,7 @@
 #include "main\game.hpp"
 #include "main\player.hpp"
 #include "main\enemy.hpp"
+#include "main\utils.hpp"
 
 using namespace std;
 
@@ -26,10 +27,10 @@ vector<string> splitWords(const string &sentence)
 string getInputWithTimeout(int seconds)
 {
     string input;
-    cout << "aku saya mandi atas kaki tanga hitam" << endl;
-    cout << "You have " << seconds << " seconds to type:\n> ";
+    cout << "Kamu punya " << "\033[32m" << seconds << "\033[0m" << " detik untuk mengetik:" << endl; counting123();
     DWORD start = GetTickCount();
 
+    cout << "\n> ";
     while ((GetTickCount() - start) < (seconds * 1000))
     {
         if (_kbhit())
@@ -53,36 +54,36 @@ string getInputWithTimeout(int seconds)
         }
     }
 
-    cout << "\n⏰ Time's up!\n";
+    cout << "\n⏰ Waktu selesai....!\n";
     return input;
 }
 
-void fastTyping(string target)
+void fastTyping(string target, int second)
 {
-    string userInput = getInputWithTimeout(4);
+    cout << "Ketik kata ini: " << "\033[32m" << target << "\033[0m" << endl;;
+    string userInput = getInputWithTimeout(second);
 
     vector<string> targetWords = splitWords(target);
     vector<string> userWords = splitWords(userInput);
 
-    int playerPoint = 0;
+    int point = 0;
     float enemyMove = 0;
 
     int len = min(targetWords.size(), userWords.size());
 
     for (int i = 0; i < len; ++i)
     {
-        if (targetWords[i] == userWords[i])
-        {
-            playerPoint += 1;
-        }
-        else
-        {
-            cout << "'" + targetWords[i] + "'" << "'" + userWords[i] + "'";
-            enemyMove += 1;
-        }
+        if (targetWords[i] == userWords[i]) point++;
+        else enemyMove += 1;
     }
 
     enemyMove = enemyMove / 2;
-    addPlayerPoint(playerPoint);
-    // moveEnemy( )
+
+    addPlayerPoint(point);
+    moveEnemy(enemyMove);
+
+    if(point > 0) cout << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
+    if(enemyMove > 0) cout << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
+
+    wait(3000);
 }

@@ -8,5 +8,6 @@ void clearScreen();
 char getChar();
 int randomInt(int min, int max);
 void wait(int seconds);
+void counting123();
 
 #endif

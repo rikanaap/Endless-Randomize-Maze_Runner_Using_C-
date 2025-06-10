@@ -5,8 +5,8 @@
 #include "var\global.hpp"
 
 //?FUNCTION
-void printMap(const vector<vector<Vertex *>> &map);
-void printAllVertexConnections(const vector<vector<Vertex *>> &map);
+void printMap();
+void printAllVertexConnections();
 vector<vector<Vertex *>> generateMap(int rows, int cols, int noise);
 
 #endif

@@ -7,9 +7,9 @@ void tampilanKalah()
 {
     cout << "\n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
-    cout << "                     ";
+    cout << "                     \n";
     cout << "                     GAME OVER ☠️                     \n";
-    cout << "                     ";
+    cout << "                     \n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
     cout << "\n";
     cout << "[1] 🔁 Main Lagi" << endl;
@@ -25,12 +25,12 @@ void tampilanKalah()
         break;
     case '2':
         cout << "\nTerima kasih telah bermain Maze Runner!\n";
-        wait(2);
+        wait(800);
         exit(0);
         break;
     default:
         cout << "Pilihan tidak valid.\n";
-        wait(1);
+        wait(500);
         tampilanKalah();
         break;
     }

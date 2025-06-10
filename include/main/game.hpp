@@ -4,6 +4,6 @@
 #include "package\package.hpp"
 
 void runMonkeytype(char* selectedWord);
-void fastTyping(string target);
+void fastTyping(string target, int second);
 
 #endif 

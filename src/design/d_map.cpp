@@ -9,11 +9,11 @@ void runMap(int rows, int cols, GameConfig config)
 {
     auto map = generateMap(rows, cols, 17);
     char input;
-    playerPoint = 6;
+    playerPoint = config.defaultPoint;
     playerWin = false;
     enemyWin = false;
     
-    searchUser(map);
+    searchUser();
     printTutorial();
     while (true)
     {
@@ -24,7 +24,7 @@ void runMap(int rows, int cols, GameConfig config)
             return;
         }
 
-        controlPlayer(map, input, config);
+        controlPlayer(input, config);
         if(enemyWin) return tampilanKalah();
         if(playerWin) return tampilanMenang();
     }

@@ -26,12 +26,12 @@ void tampilanMenang() {
             break;
         case '2':
             cout << "\nTerima kasih telah bermain Maze Runner!\n";
-            wait(2);
+            wait(800);
             exit(0);
             break;
         default:
             cout << "Pilihan tidak valid.\n";
-            wait(1);
+            wait(500);
             tampilanMenang(); // ulang lagi
             break;
     }

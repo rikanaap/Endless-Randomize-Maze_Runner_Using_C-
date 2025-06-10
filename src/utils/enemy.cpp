@@ -11,36 +11,36 @@ bool enemyIsInPlayer(){
     return (enemyPos.first == currentPos.first) && (enemyPos.second == currentPos.second);
 }
 
-void moveEnemyUp(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
+void moveEnemyUp( pair<int, int> &enemyPos)
 {
-    Vertex *v = map[enemyPos.first][enemyPos.second];
+    Vertex *v = runningMap[enemyPos.first][enemyPos.second];
     if (v->up && v->weightUp > 0)
     {
         enemyPos.first -= 1;
     }
    enemyWin = enemyIsInPlayer();
 }
-void moveEnemyDown(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
+void moveEnemyDown( pair<int, int> &enemyPos)
 {
-    Vertex *v = map[enemyPos.first][enemyPos.second];
+    Vertex *v = runningMap[enemyPos.first][enemyPos.second];
     if (v->down && v->weightDown > 0)
     {
         enemyPos.first += 1;
     }
     enemyWin = enemyIsInPlayer();
 }
-void moveEnemyLeft(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
+void moveEnemyLeft( pair<int, int> &enemyPos)
 {
-    Vertex *v = map[enemyPos.first][enemyPos.second];
+    Vertex *v = runningMap[enemyPos.first][enemyPos.second];
     if (v->left && v->weightLeft > 0)
     {
         enemyPos.second -= 1;
     }
     enemyWin = enemyIsInPlayer();
 }
-void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
+void moveEnemyRight( pair<int, int> &enemyPos)
 {
-    Vertex *v = map[enemyPos.first][enemyPos.second];
+    Vertex *v = runningMap[enemyPos.first][enemyPos.second];
     if (v->right && v->weightRight > 0)
     {
         enemyPos.second += 1;
@@ -63,7 +63,7 @@ bool isConnected(Vertex *from, Vertex *to, const string &direction)
     return false;
 }
 
-bool bfs(Vertex *start, Vertex *target, vector<vector<bool>> &visited, vector<vector<Vertex *>> &map)
+bool bfs(Vertex *start, Vertex *target, vector<vector<bool>> &visited)
 {
     int rows = visited.size();
     int cols = visited[0].size();
@@ -88,7 +88,7 @@ bool bfs(Vertex *start, Vertex *target, vector<vector<bool>> &visited, vector<ve
 
             if (nx < 0 || ny < 0 || nx >= rows || ny >= cols)
                 continue;
-            Vertex *neighbor = map[nx][ny];
+            Vertex *neighbor = runningMap[nx][ny];
 
             if (!neighbor || visited[nx][ny])
                 continue;
@@ -122,14 +122,14 @@ pair<int, int> randomizePosition(int rows, int cols)
 }
 
 
-void searchUser(vector<vector<Vertex *>> &map)
+void searchUser()
 {
-    Vertex *enemy = (enemyPos.first >= 0) ? map[enemyPos.first][enemyPos.second] : NULL;
+    Vertex *enemy = (enemyPos.first >= 0) ? runningMap[enemyPos.first][enemyPos.second] : NULL;
     if (enemy == NULL) return;
-    Vertex *player = map[currentPos.first][currentPos.second];
+    Vertex *player = runningMap[currentPos.first][currentPos.second];
 
-    int rows = map.size();
-    int cols = map[0].size();
+    int rows = runningMap.size();
+    int cols = runningMap[0].size();
 
     vector<vector<bool>> visited(rows, vector<bool>(cols, false));
 
@@ -137,7 +137,7 @@ void searchUser(vector<vector<Vertex *>> &map)
 
     while (true)
     {
-        if (bfs(enemy, player, visited, map))
+        if (bfs(enemy, player, visited))
         {
             vector<char> path;
             for (Vertex *v = player; v != enemy; v = parent[v].first)
@@ -153,34 +153,34 @@ void searchUser(vector<vector<Vertex *>> &map)
         else
         {
             enemyPos = randomizePosition(rows, cols);
-            enemy =  map[enemyPos.first][enemyPos.second];
+            enemy =  runningMap[enemyPos.first][enemyPos.second];
         }
     }
 }
 
-void moveEnemy(vector<vector<Vertex *>> &map, int loopFor = 1)
+void moveEnemy( int loopFor = 1)
 {
     for (int i = 0; i < loopFor; ++i)
     {
         if (isMoveEmpty())
         {
-            searchUser(map);
+            searchUser();
         }
 
         char direction = firstMove();
         switch (direction)
         {
         case 'U':
-            moveEnemyUp(map, enemyPos);
+            moveEnemyUp(enemyPos);
             break;
         case 'D':
-            moveEnemyDown(map, enemyPos);
+            moveEnemyDown(enemyPos);
             break;
         case 'L':
-            moveEnemyLeft(map, enemyPos);
+            moveEnemyLeft(enemyPos);
             break;
         case 'R':
-            moveEnemyRight(map, enemyPos);
+            moveEnemyRight(enemyPos);
             break;
         default:
             return;

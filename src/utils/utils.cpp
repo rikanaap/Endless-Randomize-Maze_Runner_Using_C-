@@ -30,5 +30,11 @@ int randomInt(int min, int max)
 }
 
 void wait(int seconds) {
-    std::this_thread::sleep_for(std::chrono::seconds(seconds));
+    std::this_thread::sleep_for(std::chrono::milliseconds(seconds));
+}
+
+void counting123(){
+    cout << "1"; wait(100); cout << "."; wait(100); cout << "."; wait(100); cout << ". " ;
+    cout << "2"; wait(100); cout << "."; wait(100); cout << "."; wait(100); cout << ". " ;
+    cout << "3"; wait(100); cout << "."; wait(100); cout << "."; wait(100); cout << ". " ;
 }

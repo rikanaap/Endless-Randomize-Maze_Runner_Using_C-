@@ -1,7 +1,10 @@
 #include "var\global.hpp"
+#include "package\package.hpp"
 
 Vertex *start_v = NULL;
 Vertex *end_v = NULL;
+vector<vector<Vertex*>> runningMap;
+
 pair<int, int> currentPos = {0, 0};
 pair<int, int> enemyPos = {0, 0};
 vector<Dir> directions = {

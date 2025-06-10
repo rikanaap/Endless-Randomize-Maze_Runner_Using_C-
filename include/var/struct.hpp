@@ -23,15 +23,10 @@ struct Vertex
     bool shoot = false;
 };
 
-struct Map {
-    vector<vector<Vertex*>> map;
-    Vertex* start, end;
-};
-
 struct GameConfig {
     bool fastTyping = false;
     bool acurracyTyping = false;
-    bool defaultPoint = 0;
+    int defaultPoint = 0;
 };
 
 struct Dir

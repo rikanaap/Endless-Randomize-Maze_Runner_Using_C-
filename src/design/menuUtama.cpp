@@ -34,13 +34,13 @@ void menuUtama()
                 break;
             case 8:
                 cout << "\nTerima kasih telah bermain. Sampai jumpa!😎👋\n";
-                wait(1); exit(0);
+                wait(500); exit(0);
                 break;
             default:
-                cout << "\nPilihan tidak valid.😡 Silakan pilih antara 1 dan 2.\n";
-                wait(1); clearScreen();
+                cout << "\nPilihan tidak valid.😡 Silakan pilih antara 500 dan 2.\n";
+                wait(500); clearScreen();
                 break;
-            }
+            };
             
             cout << endl;
         }
