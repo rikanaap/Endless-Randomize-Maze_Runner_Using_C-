@@ -18,7 +18,7 @@ void moveEnemyUp(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.first -= 1;
     }
-    enemyIsInPlayer();
+   enemyWin = enemyIsInPlayer();
 }
 void moveEnemyDown(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
@@ -27,7 +27,7 @@ void moveEnemyDown(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.first += 1;
     }
-    enemyIsInPlayer();
+    enemyWin = enemyIsInPlayer();
 }
 void moveEnemyLeft(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
@@ -36,7 +36,7 @@ void moveEnemyLeft(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.second -= 1;
     }
-    enemyIsInPlayer();
+    enemyWin = enemyIsInPlayer();
 }
 void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
 {
@@ -45,7 +45,7 @@ void moveEnemyRight(vector<vector<Vertex *>> &map, pair<int, int> &enemyPos)
     {
         enemyPos.second += 1;
     }
-    enemyIsInPlayer();
+    enemyWin = enemyIsInPlayer();
 }
 
 unordered_map<Vertex *, pair<Vertex *, char>> parent;
