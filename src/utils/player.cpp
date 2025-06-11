@@ -238,7 +238,7 @@ void printTutorial()
 {
     cout << "\n🪙 Point: " << playerPoint;
     if (playerPoint < 4)
-        "\n\n💯💯💯 TRY OUR GAMBLING SLOT, PRESS 'G'🤑🤑🤑🤑";
+        "\n\n💯 Tekan 'G' untuk memainkan monkeytype dan dapatkan poin! 💯";
     cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]";
 }
 
@@ -246,22 +246,22 @@ void controlPlayer(char input, GameConfig config)
 {
     int choosenGame = 0;
     bool validInput = false;
-    // printTutorial();
+    //printTutorial();
     switch (input)
     {
     case 'g':
         clearScreen();
-        /* if (config.acurracyTyping && config.fastTyping)
+        if (playerPoint > 3)
         {
-            cout << "🫡 Pilih Game:" << endl;
-            cout << "F. Fast Typing:" << endl;
-            cout << "H.  Accuracy Typing:" << endl;
+            //cout << "🫡 Pilih Game:" << endl;
+            //cout << "F. Fast Typing:" << endl;
+            //cout << "H.  Accuracy Typing:" << endl;
             char input;
             input = getChar();
-            if (input != '1')
-                choosenGame = 2;
+            //if (input != '1')
+            //    choosenGame = 2;
         }
-        else */
+        else 
             choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
