@@ -242,7 +242,7 @@ void controlPlayer(char input, GameConfig config)
     {
     case 'g':
         clearScreen();
-        if (config.acurracyTyping && config.fastTyping)
+        /* if (config.acurracyTyping && config.fastTyping)
         {
             cout << "🫡 Pilih Game:" << endl;
             cout << "F. Fast Typing:" << endl;
@@ -252,8 +252,8 @@ void controlPlayer(char input, GameConfig config)
             if (input != '1')
                 choosenGame = 2;
         }
-        else
-            choosenGame = config.acurracyTyping ? 1 : 2;
+        else */
+            choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
         case 1:

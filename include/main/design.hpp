@@ -3,8 +3,9 @@
 #include "var\struct.hpp"
 
 void menuUtama();
+void chooseMode();
 void runMap(int rows, int cols, GameConfig config);
-void menuLevel();
+void menuLevel(GameConfig config);
 void tampilanMenang();
 void tampilanKalah();
 
