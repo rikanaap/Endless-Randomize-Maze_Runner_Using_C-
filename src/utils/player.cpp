@@ -253,8 +253,8 @@ void controlPlayer(char input, GameConfig config)
     switch (input)
     {
     case 'g':
+        if (playerPoint > 3) { break; }
         clearScreen();
-        if (playerPoint > 3) break;
         choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
