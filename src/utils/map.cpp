@@ -292,6 +292,8 @@ void printMap()
     int visCols = cols * 4 - 1;
     vector<vector<string>> visual(visRows, vector<string>(visCols, "⬛"));
 
+    bool enemyValid = enemyPos.first >= 0 && enemyPos.second >= 0;
+
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
         {
@@ -313,7 +315,7 @@ void printMap()
             if (i == currentPos.first && j == currentPos.second)
                 visual[vi][vj] = "😯";
 
-            if (i == enemyPos.first && j == enemyPos.second)
+            if (enemyValid && i == enemyPos.first && j == enemyPos.second)
                 visual[vi][vj] = "😈";
 
             if (v->weightRight > 0)
