@@ -300,7 +300,7 @@ void controlPlayer(char input, GameConfig config)
         }
         break;
     case 'i':
-        if (removePlayerPoint(3))
+        if (removePlayerPoint(6))
         {
             shootPlayerUp( currentPos);
             // meleeUp();
@@ -309,7 +309,7 @@ void controlPlayer(char input, GameConfig config)
         }
         break;
     case 'k':
-        if (removePlayerPoint(3))
+        if (removePlayerPoint(6))
         {
             shootPlayerDown( currentPos);
             // meleeDown();
@@ -318,7 +318,7 @@ void controlPlayer(char input, GameConfig config)
         }
         break;
     case 'j':
-        if (removePlayerPoint(3))
+        if (removePlayerPoint(6))
         {
             shootPlayerLeft( currentPos);
             // meleeLeft();
@@ -327,7 +327,7 @@ void controlPlayer(char input, GameConfig config)
         }
         break;
     case 'l':
-        if (removePlayerPoint(3))
+        if (removePlayerPoint(6))
         {
             shootPlayerRight( currentPos);
             // meleeRight();
