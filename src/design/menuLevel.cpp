@@ -30,27 +30,27 @@ void menuLevel(GameConfig config)
         switch (choice)
         {
         case 'e':
-            keyboard();
+            // keyboard();
             config.defaultPoint = 1;
             runMap(3, 3, config);
             break;
         case 'r':
-            keyboard();
+            // keyboard();
             config.defaultPoint = 2;
             runMap(6, 6, config);
             break;
         case 't':
-            keyboard();
+            // keyboard();
             config.defaultPoint = 3;
             runMap(9, 9, config);
             break;
         case 'y':
-            keyboard();
+            // keyboard();
             config.defaultPoint = 4;
             runMap(12, 12, config);
             break;
         case 'u':
-            keyboard();
+            // keyboard();
             config.defaultPoint = 5;
             runMap(15, 15, config);
             break;

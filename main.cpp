@@ -8,6 +8,7 @@ int main()
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
 #endif
+    keyboard();
     clearScreen();
     menuUtama();
 }

@@ -5,7 +5,7 @@ void keyboard()
 {
 
     clearScreen();
-    cout << "       👇 Coba Lihat Keyboard Anda 👇" << endl
+    cout << "  👇 TUTORIAL - Coba Lihat Keyboard Anda 👇" << endl
          << endl;
     wait(500);
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl;
