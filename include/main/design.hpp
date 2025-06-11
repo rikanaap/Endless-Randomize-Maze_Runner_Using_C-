@@ -7,5 +7,6 @@ void runMap(int rows, int cols, GameConfig config);
 void menuLevel();
 void tampilanMenang();
 void tampilanKalah();
+void keyboard();
 
 #endif

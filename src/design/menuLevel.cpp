@@ -30,18 +30,23 @@ void menuLevel()
         switch (choice)
         {
         case 'e':
+            keyboard();
             runMap(3, 3, {true, true, 1}); // Adjusting rows and cols based on level
             break;
         case 'r':
+            keyboard();
             runMap(6, 6, {true, false, 2});
             break;
         case 't':
+            keyboard();
             runMap(9, 9, {false, true, 3});
             break;
         case 'y':
+            keyboard();
             runMap(12, 12, {true, true, 4});
             break;
         case 'u':
+            keyboard();
             runMap(15, 15, {false, true, 5});
             break;
         case 8:
