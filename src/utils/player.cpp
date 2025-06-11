@@ -126,11 +126,58 @@ void shootPlayerRight(pair<int, int> position, bool first = true)
     removeEnemy(v);
     printMap();
     clearScreen();
+    v->shoot = false;
     if (v->right && v->weightRight > 0)
     {
         shootPlayerRight( {v->right->x, v->right->y}, false);
     }
 }
+
+//?MELEE FUNCTION | BACKUP COMBAT SYSTEM
+void meleeUp()
+{
+    int x = currentPos.first - 1;
+    int y = currentPos.second;
+    if (x >= 0 && runningMap[x][y] && enemyPos.first == x && enemyPos.second == y)
+    {
+        enemyPos = {-1, -1};
+        cout << "Enemy killed with melee up!\n";
+    }
+}
+
+void meleeDown()
+{
+    int x = currentPos.first + 1;
+    int y = currentPos.second;
+    if (x < runningMap.size() && runningMap[x][y] && enemyPos.first == x && enemyPos.second == y)
+    {
+        enemyPos = {-1, -1};
+        cout << "Enemy killed with melee down!\n";
+    }
+}
+
+void meleeLeft()
+{
+    int x = currentPos.first;
+    int y = currentPos.second - 1;
+    if (y >= 0 && runningMap[x][y] && enemyPos.first == x && enemyPos.second == y)
+    {
+        enemyPos = {-1, -1};
+        cout << "Enemy killed with melee left!\n";
+    }
+}
+
+void meleeRight()
+{
+    int x = currentPos.first;
+    int y = currentPos.second + 1;
+    if (y < runningMap[0].size() && runningMap[x][y] && enemyPos.first == x && enemyPos.second == y)
+    {
+        enemyPos = {-1, -1};
+        cout << "Enemy killed with melee right!\n";
+    }
+}
+
 
 //?OTHER  FUNCTION
 void rollDice(int times)
@@ -253,33 +300,37 @@ void controlPlayer(char input, GameConfig config)
         }
         break;
     case 'i':
-        if (removePlayerPoint(6))
+        if (removePlayerPoint(3))
         {
             shootPlayerUp( currentPos);
+            // meleeUp();
             validInput = true;
             moveEnemy( 3);
         }
         break;
     case 'k':
-        if (removePlayerPoint(6))
+        if (removePlayerPoint(3))
         {
             shootPlayerDown( currentPos);
+            // meleeDown();
             validInput = true;
             moveEnemy( 3);
         }
         break;
     case 'j':
-        if (removePlayerPoint(6))
+        if (removePlayerPoint(3))
         {
-            shootPlayerDown( currentPos);
+            shootPlayerLeft( currentPos);
+            // meleeLeft();
             validInput = true;
             moveEnemy( 3);
         }
         break;
     case 'l':
-        if (removePlayerPoint(6))
+        if (removePlayerPoint(3))
         {
-            shootPlayerDown( currentPos);
+            shootPlayerRight( currentPos);
+            // meleeRight();
             validInput = true;
             moveEnemy( 3);
         }
