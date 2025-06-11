@@ -17,6 +17,7 @@ void menuUtama()
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << endl;
             cout << "   F | Mulai Permainan 🎮" << endl;
+            cout << endl;
             cout << "   Backspace | Keluar ⛔" << endl;
             cout << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
@@ -37,7 +38,7 @@ void menuUtama()
                 wait(500); exit(0);
                 break;
             default:
-                cout << "\nPilihan tidak valid.😡 Silakan pilih antara 500 dan 2.\n";
+                cout << "\n\nPilihan tidak valid. 😡 Silakan coba lagi.";
                 wait(500); clearScreen();
                 break;
             };
