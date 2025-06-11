@@ -46,7 +46,7 @@ void menuLevel(GameConfig config)
             break;
         case 'y':
             keyboard();
-            config.defaultPoit = 4;
+            config.defaultPoint = 4;
             runMap(12, 12, config);
             break;
         case 'u':
