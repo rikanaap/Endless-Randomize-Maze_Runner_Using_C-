@@ -1,6 +1,7 @@
 #include "main\map.hpp"
 #include "main\player.hpp"
 #include "main\utils.hpp"
+#include "main\enemy.hpp"
 #include "var\global.hpp"
 
 vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
@@ -9,7 +10,7 @@ vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
         {
-            map[i][j] = new Vertex(); 
+            map[i][j] = new Vertex();
             map[i][j]->x = i;
             map[i][j]->y = j;
         }
@@ -360,17 +361,18 @@ vector<vector<Vertex *>> generateMap(int rows, int cols, int noise)
     auto map = initializeVertexMap(rows, cols);
     runningMap = map;
     // addNoise(rows, cols, noise);
-    
+
     auto [start, end] = getRandomStartAndEnd(rows, cols);
     currentPos = {start->x, start->y};
-    
+    enemyPos = randomizePosition(rows, cols);
+
     createPath(start, end, rows, cols);
     markConnected(start);
     connectUnreachableVertices(rows, cols);
     markConnected(start);
     filterUnreachableTiles(rows, cols);
     updateWeightsByCoordinates(rows, cols);
-printMap();
+    printMap();
 
     return map;
 }

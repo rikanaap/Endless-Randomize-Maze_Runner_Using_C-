@@ -118,6 +118,7 @@ pair<int, int> randomizePosition(int rows, int cols)
 {
     int sx = randomInt(0, rows - 1);
     int sy = randomInt(0, cols - 1);
+    if((sx == currentPos.first) && (sy == currentPos.second)) randomizePosition(rows, cols);
     return {sx, sy };
 }
 
