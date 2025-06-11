@@ -13,8 +13,7 @@ void tampilanKalah()
     cout << "                     \n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
     cout << "\n";
-    cout << "[Backspace] 🚪 Kembali ke menu level" << endl;
-    cout << "Pilihanmu: ";
+    cout << "[Backspace] 🚪 Kembali ke menu level";
 
     char pilihan;
     pilihan = getChar();

@@ -29,7 +29,7 @@ string getInputWithTimeout(int seconds)
     string input;
     cout << "Kamu punya " << "\033[32m" << seconds << "\033[0m" << " detik untuk mengetik:" << endl; counting123();
     DWORD start = GetTickCount();
-
+    
     cout << "\n> ";
     while ((GetTickCount() - start) < (seconds * 1000))
     {
@@ -76,14 +76,18 @@ void fastTyping(string target, int second)
         if (targetWords[i] == userWords[i]) point++;
         else enemyMove += 1;
     }
-
+    
     enemyMove = enemyMove / 2;
 
     addPlayerPoint(point);
     moveEnemy(enemyMove);
-
+    
     if(point > 0) cout << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
     if(enemyMove > 0) cout << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
-
-    wait(3000);
+    DWORD start = GetTickCount();
+    
+    while ((GetTickCount() - start) < (4 * 1000))
+    {
+        if (_kbhit()) _getch();
+    }
 }

@@ -10,8 +10,6 @@ int randomInt(int min, int max);
 void wait(int seconds);
 void counting123();
 string generateRandomWord();
-pair<string, int> wordsConvert(const string& namaFile, bool isFastTyping);
-
-
+pair<string, int> wordsConvert();
 
 #endif

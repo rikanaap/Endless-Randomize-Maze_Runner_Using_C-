@@ -10,9 +10,13 @@ int playerPoint = 0;
 
 void addPlayerPoint(int point)
 {
-    cout << point; 
-    playerPoint += point;
-    if (playerPoint > 10) playerPoint = 10;
+    int temp = playerPoint;
+    temp += point;
+    cout << "Point: " << point;
+    if (temp > 10)
+        playerPoint = 10;
+    else
+        playerPoint = temp;
 }
 bool removePlayerPoint(int point)
 {
@@ -243,28 +247,25 @@ void controlPlayer(char input, GameConfig config)
 {
     int choosenGame = 0;
     bool validInput = false;
-    string randomWord;
+    auto [randomWord, estSecond] = wordsConvert();
+    char selectedWords[100];
     // printTutorial();
     switch (input)
     {
     case 'g':
         clearScreen();
         if (playerPoint > 3) break;
-        randomWord = generateRandomWord();
         choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
-        case 1: {
-            fastTyping(randomWord, 4);
-            break; }
-        case 2: {
-            auto [randomWords, _] = wordsConvert("src/constant/kata_baku.csv", false);
-            char selectedWords[100];
-            strncpy(selectedWords, randomWords.c_str(), sizeof(selectedWords));
-            selectedWords[sizeof(selectedWords) - 1] = '\0'; // Safety null-termination
+        case 1:
+            fastTyping(randomWord, estSecond);
+            break;
+        case 2:
+            strncpy(selectedWords, randomWord.c_str(), sizeof(selectedWords));
+            selectedWords[sizeof(selectedWords) - 1] = '\0';
 
             runMonkeytype(selectedWords);
-
             break;
         }
         validInput = true;

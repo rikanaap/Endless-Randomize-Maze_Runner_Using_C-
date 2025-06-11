@@ -13,8 +13,7 @@ void tampilanMenang() {
     cout << "🧠  Langkahmu luar biasa!" << endl;
     cout << "💡  Logika dan kesabaranmu patut diacungi jempol." << endl;
     cout << endl;
-    cout << "[Backspace] 🚪 Kembali ke menu level" << endl;
-    cout << "Pilihanmu: ";
+    cout << "[Backspace] 🚪 Kembali ke menu level";
 
     char pilihan;
     pilihan = getChar();

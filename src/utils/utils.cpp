@@ -71,11 +71,13 @@ string generateRandomWord() {
     return hasil;
 }
 
-pair<string, int> wordsConvert(const string& namaFile, bool isFastTyping) {
+int estimatedSecond(const string& word){
+    int wordCount = count(word.begin(), word.end(), ' ') + 1;
+    return wordCount * 2;
+}
+
+pair<string, int> wordsConvert() {
     string selectedWords = generateRandomWord();
-    
-    int wordCount = count(selectedWords.begin(), selectedWords.end(), ' ') + 1;
-    int estimatedSeconds = isFastTyping ? wordCount * 2 : 0;
-    
+    int estimatedSeconds = estimatedSecond(selectedWords);
     return make_pair(selectedWords, estimatedSeconds);
 }
