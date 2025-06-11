@@ -5,6 +5,7 @@
 #include "var\struct.hpp"
 #include "package\package.hpp"
 
+//? Tugas dari file ini adalah untuk deklarasi memori
 extern Vertex* start_v;
 extern Vertex* end_v;
 extern vector<vector<Vertex*>> runningMap;
@@ -16,3 +17,5 @@ extern bool enemyWin;
 extern vector<Dir> directions;
 extern enemyQueue enemyMovement;
 extern letterQueue word;
+
+//? Extern = diisi si variablenya itu di file lain

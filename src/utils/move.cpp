@@ -33,7 +33,7 @@ void removeMove()
         return; }
     else
     {
-        for (int i = 1; i < enemyMovement.top; i++)
+        for (int i = 1; i < enemyMovement.top; i++) //? 0 dihiraukan karena 0 adalah data yang ingin dihapus
         {
             enemyMovement.isi[i-1] = enemyMovement.isi[i];
         }
