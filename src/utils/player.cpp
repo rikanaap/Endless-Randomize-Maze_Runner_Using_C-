@@ -8,13 +8,12 @@
 
 int playerPoint = 0;
 
-void addPlayerPoint(int point) { 
+void addPlayerPoint(int point)
+{
+    cout << point; 
     playerPoint += point;
-    if (playerPoint > 10)
-    {
-        playerPoint = 10;
-    }
- }
+    if (playerPoint > 10) playerPoint = 10;
+}
 bool removePlayerPoint(int point)
 {
     if (playerPoint < point)
@@ -23,7 +22,6 @@ bool removePlayerPoint(int point)
     temp -= point;
     if (temp < 0)
         return false;
-    return true;
     playerPoint -= point;
     return true;
 }
@@ -93,7 +91,7 @@ void shootPlayerUp(pair<int, int> position, bool first = true)
     v->shoot = false;
     if (v->up && v->weightUp > 0)
     {
-        shootPlayerUp( {v->up->x, v->up->y}, false);
+        shootPlayerUp({v->up->x, v->up->y}, false);
     }
 }
 
@@ -108,7 +106,7 @@ void shootPlayerDown(pair<int, int> position, bool first = true)
     v->shoot = false;
     if (v->down && v->weightDown > 0)
     {
-        shootPlayerDown( {v->down->x, v->down->y}, false);
+        shootPlayerDown({v->down->x, v->down->y}, false);
     }
 }
 
@@ -123,7 +121,7 @@ void shootPlayerLeft(pair<int, int> position, bool first = true)
     v->shoot = false;
     if (v->left && v->weightLeft > 0)
     {
-        shootPlayerLeft( {v->left->x, v->left->y}, false);
+        shootPlayerLeft({v->left->x, v->left->y}, false);
     }
 }
 
@@ -138,7 +136,7 @@ void shootPlayerRight(pair<int, int> position, bool first = true)
     v->shoot = false;
     if (v->right && v->weightRight > 0)
     {
-        shootPlayerRight( {v->right->x, v->right->y}, false);
+        shootPlayerRight({v->right->x, v->right->y}, false);
     }
 }
 
@@ -186,7 +184,6 @@ void meleeRight()
         cout << "Enemy killed with melee right!\n";
     }
 }
-
 
 //?OTHER  FUNCTION
 void rollDice(int times)
@@ -238,7 +235,7 @@ void printTutorial()
 {
     cout << "\n🪙 Point: " << playerPoint;
     if (playerPoint < 4)
-        "\n\n💯 Tekan 'G' untuk memainkan monkeytype dan dapatkan poin! 💯";
+        cout << "\n\n💯 Tekan 'G' untuk memainkan game dan dapatkan poin! 💯";
     cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]";
 }
 
@@ -246,31 +243,23 @@ void controlPlayer(char input, GameConfig config)
 {
     int choosenGame = 0;
     bool validInput = false;
-    //printTutorial();
+    string randomWord;
+    // printTutorial();
     switch (input)
     {
     case 'g':
         clearScreen();
-        if (playerPoint > 3)
-        {
-            //cout << "🫡 Pilih Game:" << endl;
-            //cout << "F. Fast Typing:" << endl;
-            //cout << "H.  Accuracy Typing:" << endl;
-            char input;
-            input = getChar();
-            //if (input != '1')
-            //    choosenGame = 2;
-        }
-        else 
-            choosenGame = config.fastTyping ? 1 : 2;
+        if (playerPoint > 3) break;
+        randomWord = generateRandomWord();
+        choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
         case 1:
-            fastTyping("aku saya mandi atas kaki tanga hitam", 4);
+            fastTyping(randomWord, 4);
             break;
 
         case 2:
-            char accuracyWords[] = "makan nasi di udang di kampang";
+            char accuracyWords[] = "makan nasi gagak geprek pias";
             runMonkeytype(accuracyWords);
             break;
         }
@@ -279,69 +268,69 @@ void controlPlayer(char input, GameConfig config)
     case 'w':
         if (removePlayerPoint(1))
         {
-            movePlayerUp( currentPos);
+            movePlayerUp(currentPos);
             validInput = true;
-            moveEnemy( 1);
+            moveEnemy(1);
         }
         break;
     case 's':
         if (removePlayerPoint(1))
         {
-            movePlayerDown( currentPos);
+            movePlayerDown(currentPos);
             validInput = true;
-            moveEnemy( 1);
+            moveEnemy(1);
         }
         break;
     case 'a':
         if (removePlayerPoint(1))
         {
-            movePlayerLeft( currentPos);
+            movePlayerLeft(currentPos);
             validInput = true;
-            moveEnemy( 1);
+            moveEnemy(1);
         }
         break;
     case 'd':
         if (removePlayerPoint(1))
         {
-            movePlayerRight( currentPos);
+            movePlayerRight(currentPos);
             validInput = true;
-            moveEnemy( 1);
+            moveEnemy(1);
         }
         break;
     case 'i':
         if (removePlayerPoint(6))
         {
-            shootPlayerUp( currentPos);
+            shootPlayerUp(currentPos);
             // meleeUp();
             validInput = true;
-            moveEnemy( 3);
+            moveEnemy(3);
         }
         break;
     case 'k':
         if (removePlayerPoint(6))
         {
-            shootPlayerDown( currentPos);
+            shootPlayerDown(currentPos);
             // meleeDown();
             validInput = true;
-            moveEnemy( 3);
+            moveEnemy(3);
         }
         break;
     case 'j':
         if (removePlayerPoint(6))
         {
-            shootPlayerLeft( currentPos);
+            shootPlayerLeft(currentPos);
             // meleeLeft();
             validInput = true;
-            moveEnemy( 3);
+            moveEnemy(3);
         }
         break;
     case 'l':
         if (removePlayerPoint(6))
         {
-            shootPlayerRight( currentPos);
+            shootPlayerRight(currentPos);
             // meleeRight();
             validInput = true;
-            moveEnemy( 3);
+            moveEnemy(3);
         }
         break;
     }

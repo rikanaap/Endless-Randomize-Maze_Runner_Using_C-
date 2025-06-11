@@ -39,8 +39,8 @@ void counting123(){
     cout << "3"; wait(100); cout << "."; wait(100); cout << "."; wait(100); cout << ". " ;
 }
 
-string ambilKataGabungan(const string& namaFile) {
-    ifstream file(namaFile);
+string generateRandomWord() {
+    ifstream file("src/constant/kata_baku.csv");
     vector<string> daftarKata;
     string kata;
 
