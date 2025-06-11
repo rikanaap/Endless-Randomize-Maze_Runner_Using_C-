@@ -16,6 +16,8 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
+#include <fstream>
+#include <random>
 
 #ifdef _WIN32
 #include <windows.h>
