@@ -1,26 +1,28 @@
 #include "package\package.hpp"
 #include "main\design.hpp"
 #include "main\utils.hpp"
+#include "var\global.hpp"
 
-void menuLevel(GameConfig config)
-{
+void chooseMode() {
+
+    GameConfig config;
+    config.fastTyping = false;
+    config.acurracyTyping = false;
+
     while (true)
     {
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
         cout << "                          " << endl;
-        cout << "                          🏃 PILIH LEVEL 🏃" << endl;
+        cout << "                          🏃 PILIH GAMEMODE 🏃" << endl;
         cout << "                          " << endl;
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
         cout << endl;
-        cout << "   E | Level 1️⃣" << endl;
-        cout << "   R | Level 2️⃣" << endl;
-        cout << "   T | Level 3️⃣" << endl;
-        cout << "   Y | Level 4️⃣" << endl;
-        cout << "   U | Level 5️⃣" << endl;
+        cout << "   F | Speed Type Mode ⚡" << endl;
+        cout << "   H | Accuracy Type Mode 🎯" << endl;
         cout << "   Backspace | Kembali ke Menu Utama ◀️" << endl;
         cout << endl;
         cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
-        cout << "Tentukan pilihan level: ";
+        cout << "Tentukan gamemode: ";
         int choice;
         choice = getChar();
         choice = tolower(choice);
@@ -29,31 +31,16 @@ void menuLevel(GameConfig config)
         clearScreen();
         switch (choice)
         {
-        case 'e':
-            keyboard();
-            config.defaultPoint = 1;
-            runMap(3, 3, config);
-            break;
-        case 'r':
-            keyboard();
-            config.defaultPoint = 2;
-            runMap(6, 6, config);
-            break;
-        case 't':
-            keyboard();
-            config.defaultPoint = 3;
-            runMap(9, 9, config);
-            break;
-        case 'y':
-            keyboard();
-            config.defaultPoit = 4;
-            runMap(12, 12, config);
-            break;
-        case 'u':
-            keyboard();
-            config.defaultPoint = 5;
-            runMap(15, 15, config);
-            break;
+        case 'f':
+            config.fastTyping = true;
+            clearScreen();
+            menuLevel(config);
+            return;
+        case 'h':
+            config.acurracyTyping = true;
+            clearScreen();
+            menuLevel(config);
+            return;
         case 8:
             return;
         default:
