@@ -30,7 +30,7 @@ void menuUtama()
             case 'f':
                 cout << "\n⏩ Memulai permainan...\n";
                 clearScreen();
-                menuLevel();
+                chooseMode();
                 break;
             case 8:
                 cout << "\nTerima kasih telah bermain. Sampai jumpa!😎👋\n";

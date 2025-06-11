@@ -62,8 +62,8 @@ void runMonkeytype(char* selectedWord) {
     createQueue();
     resetQueue(selectedWord);
 
-    cout << "Ketik kalimat ini: " << "\033[32m" << selectedWord << "\033[0m" << endl;
-    cout << "> ";
+    cout << "Ketik kalimat ini: " << "\033[32m" << selectedWord << "\033[0m" << endl; counting123();
+    cout << "\n> ";
 
     auto start = high_resolution_clock::now();
 
