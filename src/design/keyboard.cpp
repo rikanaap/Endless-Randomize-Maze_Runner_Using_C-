@@ -1,50 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <sstream>
-#include <cstdlib>
-#include <ctime>
-#include <queue>
-#include <algorithm>
-#include <unordered_map>
-#include <cstdlib>
-#include <conio.h>
-#include <ctime>
-#include <chrono>
-#include <thread>
-#ifdef _WIN32
-#include <windows.h>
-#endif
+#include "package/package.hpp"
+#include "main/utils.hpp"
 
-using namespace std;
-using namespace std::chrono;
-
-void clearScreen()
+void keyboard()
 {
-    // ANSI escape code to clear screen and move cursor to top-left
-    std::cout << "\033[2J\033[1;1H";
-}
-
-char getChar()
-{
-    return _getch(); // instantly reads keypress without Enter
-}
-
-int randomInt(int min, int max)
-{
-    return rand() % (max - min + 1) + min;
-}
-
-void wait(int seconds)
-{
-    std::this_thread::sleep_for(std::chrono::milliseconds(seconds));
-}
-
-int main()
-{
-    #ifdef _WIN32
-        SetConsoleOutputCP(CP_UTF8);
-    #endif
 
     clearScreen();
     cout << "       👇 Coba Lihat Keyboard Anda 👇" << endl
