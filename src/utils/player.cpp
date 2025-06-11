@@ -10,11 +10,20 @@ int playerPoint = 0;
 
 void addPlayerPoint(int point) { 
     playerPoint += point;
+    if (playerPoint > 10)
+    {
+        playerPoint = 10;
+    }
  }
 bool removePlayerPoint(int point)
 {
     if (playerPoint < point)
         return false;
+    int temp = playerPoint;
+    temp -= point;
+    if (temp < 0)
+        return false;
+    return true;
     playerPoint -= point;
     return true;
 }
