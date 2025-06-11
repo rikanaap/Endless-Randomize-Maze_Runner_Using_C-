@@ -265,14 +265,25 @@ void controlPlayer(char input, GameConfig config)
             choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
-        case 1:
-            fastTyping("aku saya mandi atas kaki tanga hitam", 4);
-            break;
+        case 1: {
+            // fastTyping("aku saya mandi atas kaki tanga hitam", 4);
 
-        case 2:
-            char accuracyWords[] = "makan nasi di udang di kampang";
-            runMonkeytype(accuracyWords);
-            break;
+            auto [randomWords, timeLimit] = wordsConvert("src/constant/kata_baku.csv", true);
+            fastTyping(randomWords, timeLimit);
+
+            break; }
+        case 2: {
+            // char accuracyWords[] = "makan nasi di udang di kampang";
+            // runMonkeytype(accuracyWords);
+
+            auto [randomWords, _] = wordsConvert("src/constant/kata_baku.csv", false);
+            char selectedWords[100];
+            strncpy(selectedWords, randomWords.c_str(), sizeof(selectedWords));
+            selectedWords[sizeof(selectedWords) - 1] = '\0'; // Safety null-termination
+
+            runMonkeytype(selectedWords);
+
+            break; }
         }
         validInput = true;
         break;

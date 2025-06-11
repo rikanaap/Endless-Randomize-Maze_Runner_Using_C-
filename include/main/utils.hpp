@@ -9,5 +9,9 @@ char getChar();
 int randomInt(int min, int max);
 void wait(int seconds);
 void counting123();
+string ambilKataGabungan(const string& namaFile);
+pair<string, int> wordsConvert(const string& namaFile, bool isFastTyping);
+
+
 
 #endif
