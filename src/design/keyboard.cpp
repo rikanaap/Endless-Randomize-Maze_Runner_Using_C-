@@ -20,7 +20,7 @@ void keyboard()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan apapun untuk melanjutkan." << endl
          << endl;
     char input;
     input = getChar();
@@ -39,7 +39,7 @@ void keyboard()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan A untuk melanjutkan." << endl
          << endl;
     input = getChar();
     
@@ -57,7 +57,7 @@ void keyboard()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan W untuk melanjutkan." << endl
          << endl;
     input = getChar();
     
@@ -75,7 +75,7 @@ void keyboard()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan D untuk melanjutkan." << endl
          << endl;
     input = getChar();
     
@@ -93,7 +93,7 @@ void keyboard()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan J untuk melanjutkan." << endl
          << endl;
     input = getChar();
 
@@ -111,7 +111,7 @@ void keyboard()
     cout << endl;
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan I untuk melanjutkan." << endl
          << endl;
     input = getChar();
 
@@ -131,9 +131,8 @@ void keyboard()
          << endl;
     cout << "❗ Pertahankan posisi jari Anda pada keyboard untuk memainkan game sampai selesai ❗" << endl
          << endl;
-    cout << "Tekan 'SPACE' untuk melanjutkan." << endl
+    cout << "Tekan L untuk melanjutkan." << endl
          << endl;
     input = getChar();
-
-    input = getChar();
+    clearScreen();
 }
