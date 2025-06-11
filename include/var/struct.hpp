@@ -16,11 +16,11 @@ struct Vertex
     int weightLeft = -1;
     int weightRight = -1;
 
-    bool visited = false;
-    bool connected = false; // untuk flood fill
+    bool visited = false; //TODO: CEK VISITED
+    bool connected = false; //TODO: CEK VISITED
     
-    bool endVertex = false;
-    bool shoot = false;
+    bool endVertex = false; //? Ngejelasin kalau vertex yang sekarang itu adalah vertex terakhir
+    bool shoot = false; 
 };
 
 struct GameConfig {

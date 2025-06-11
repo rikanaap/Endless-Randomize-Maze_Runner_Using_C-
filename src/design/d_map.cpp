@@ -12,6 +12,7 @@ void runMap(int rows, int cols, GameConfig config)
     playerPoint = config.defaultPoint;
     playerWin = false;
     enemyWin = false;
+    enemyPos = randomizePosition(rows, cols);
     
     searchUser();
     printTutorial();

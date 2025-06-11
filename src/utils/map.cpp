@@ -5,85 +5,80 @@
 
 vector<vector<Vertex *>> initializeVertexMap(int rows, int cols)
 {
-    vector<vector<Vertex *>> map(rows, vector<Vertex *>(cols));
+    vector<vector<Vertex *>> map(rows, vector<Vertex *>(cols)); //? Looping row sama cols, ya intinya ngebuat array 2d yang tiap isinya struct Vertex
     for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
         {
-            map[i][j] = new Vertex();
+            map[i][j] = new Vertex(); 
             map[i][j]->x = i;
             map[i][j]->y = j;
         }
     return map;
 }
 
-void addNoise(int rows, int cols, int noiseCount)
-{
-    for (int n = 0; n < noiseCount; ++n)
-    {
-        int i = randomInt(0, rows - 1);
-        int j = randomInt(0, cols - 1);
-        Vertex *v = runningMap[i][j];
+// void addNoise(int rows, int cols, int noiseCount)
+// {
+//     for (int n = 0; n < noiseCount; ++n)
+//     {
+//         int i = randomInt(0, rows - 1);
+//         int j = randomInt(0, cols - 1);
+//         Vertex *v = runningMap[i][j];
 
-        vector<Dir> possibleDirs;
-        for (auto &d : directions)
-        {
-            int ni = i + d.dx;
-            int nj = j + d.dy;
-            if (ni >= 0 && ni < rows && nj >= 0 && nj < cols)
-            {
-                Vertex *nbr = runningMap[ni][nj];
-                bool connected = false;
-                if (d.name == "up" && v->up == nbr)
-                    connected = true;
-                else if (d.name == "down" && v->down == nbr)
-                    connected = true;
-                else if (d.name == "left" && v->left == nbr)
-                    connected = true;
-                else if (d.name == "right" && v->right == nbr)
-                    connected = true;
+//         vector<Dir> possibleDirs;
+//         for (auto &d : directions)
+//         {
+//             int ni = i + d.dx;
+//             int nj = j + d.dy;
+//             if (ni >= 0 && ni < rows && nj >= 0 && nj < cols)
+//             {
+//                 Vertex *neighbor = runningMap[ni][nj];
+//                 bool connected = false;
+//                 if (d.name == "up" && v->up == neighbor) connected = true;
+//                 else if (d.name == "down" && v->down == neighbor) connected = true;
+//                 else if (d.name == "left" && v->left == neighbor) connected = true;
+//                 else if (d.name == "right" && v->right == neighbor) connected = true;
 
-                if (!connected)
-                    possibleDirs.push_back(d);
-            }
-        }
+//                 if (!connected) possibleDirs.push_back(d);
+//             }
+//         }
 
-        if (!possibleDirs.empty())
-        {
-            Dir d = possibleDirs[randomInt(0, possibleDirs.size() - 1)];
-            Vertex *nbr = runningMap[i + d.dx][j + d.dy];
-            int weight = 1;
+//         if (!possibleDirs.empty())
+//         {
+//             Dir d = possibleDirs[randomInt(0, possibleDirs.size() - 1)];
+//             Vertex *neighbor = runningMap[i + d.dx][j + d.dy];
+//             int weight = 1;
 
-            if (d.name == "up")
-            {
-                v->up = nbr;
-                v->weightUp = weight;
-                nbr->down = v;
-                nbr->weightDown = weight;
-            }
-            else if (d.name == "down")
-            {
-                v->down = nbr;
-                v->weightDown = weight;
-                nbr->up = v;
-                nbr->weightUp = weight;
-            }
-            else if (d.name == "left")
-            {
-                v->left = nbr;
-                v->weightLeft = weight;
-                nbr->right = v;
-                nbr->weightRight = weight;
-            }
-            else if (d.name == "right")
-            {
-                v->right = nbr;
-                v->weightRight = weight;
-                nbr->left = v;
-                nbr->weightLeft = weight;
-            }
-        }
-    }
-}
+//             if (d.name == "up")
+//             {
+//                 v->up = neighbor;
+//                 v->weightUp = weight;
+//                 neighbor->down = v;
+//                 neighbor->weightDown = weight;
+//             }
+//             else if (d.name == "down")
+//             {
+//                 v->down = neighbor;
+//                 v->weightDown = weight;
+//                 neighbor->up = v;
+//                 neighbor->weightUp = weight;
+//             }
+//             else if (d.name == "left")
+//             {
+//                 v->left = neighbor;
+//                 v->weightLeft = weight;
+//                 neighbor->right = v;
+//                 neighbor->weightRight = weight;
+//             }
+//             else if (d.name == "right")
+//             {
+//                 v->right = neighbor;
+//                 v->weightRight = weight;
+//                 neighbor->left = v;
+//                 neighbor->weightLeft = weight;
+//             }
+//         }
+//     }
+// }
 
 void createPath(Vertex *current, Vertex *end, int rows, int cols)
 {
@@ -340,46 +335,6 @@ void printMap()
     }
 }
 
-void printAllVertexConnections()
-{
-    const vector<vector<Vertex *>> map = runningMap;
-    cout << "=== Vertex Connection Details ===\n";
-    for (size_t i = 0; i < map.size(); ++i)
-    {
-        for (size_t j = 0; j < map[0].size(); ++j)
-        {
-            Vertex *v = map[i][j];
-            cout << "Vertex (" << v->x << ", " << v->y << "):\n";
-
-            cout << "  Up: ";
-            if (v->up)
-                cout << "(" << v->up->x << ", " << v->up->y << ") with weight " << v->weightUp << "\n";
-            else
-                cout << "None\n";
-
-            cout << "  Down: ";
-            if (v->down)
-                cout << "(" << v->down->x << ", " << v->down->y << ") with weight " << v->weightDown << "\n";
-            else
-                cout << "None\n";
-
-            cout << "  Left: ";
-            if (v->left)
-                cout << "(" << v->left->x << ", " << v->left->y << ") with weight " << v->weightLeft << "\n";
-            else
-                cout << "None\n";
-
-            cout << "  Right: ";
-            if (v->right)
-                cout << "(" << v->right->x << ", " << v->right->y << ") with weight " << v->weightRight << "\n";
-            else
-                cout << "None\n";
-
-            cout << "-----------------------------\n";
-        }
-    }
-}
-
 pair<Vertex *, Vertex *> getRandomStartAndEnd(int rows, int cols)
 {
     do
@@ -404,7 +359,7 @@ vector<vector<Vertex *>> generateMap(int rows, int cols, int noise)
     srand(time(0));
     auto map = initializeVertexMap(rows, cols);
     runningMap = map;
-    addNoise(rows, cols, noise);
+    // addNoise(rows, cols, noise);
     
     auto [start, end] = getRandomStartAndEnd(rows, cols);
     currentPos = {start->x, start->y};
@@ -415,7 +370,7 @@ vector<vector<Vertex *>> generateMap(int rows, int cols, int noise)
     markConnected(start);
     filterUnreachableTiles(rows, cols);
     updateWeightsByCoordinates(rows, cols);
-    printMap();
+printMap();
 
     return map;
 }

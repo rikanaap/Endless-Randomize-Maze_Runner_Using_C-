@@ -36,8 +36,7 @@ string getInputWithTimeout(int seconds)
         if (_kbhit())
         {
             char c = _getch();
-            if (c == '\r')
-                break;  // Enter key
+            if (c == '\r') break; 
             if (c == 8) // Backspace pressed
             {
                 if (!input.empty())
