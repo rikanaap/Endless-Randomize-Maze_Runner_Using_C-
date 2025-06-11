@@ -70,3 +70,12 @@ string generateRandomWord() {
 
     return hasil;
 }
+
+pair<string, int> wordsConvert(const string& namaFile, bool isFastTyping) {
+    string selectedWords = generateRandomWord();
+    
+    int wordCount = count(selectedWords.begin(), selectedWords.end(), ' ') + 1;
+    int estimatedSeconds = isFastTyping ? wordCount * 2 : 0;
+    
+    return make_pair(selectedWords, estimatedSeconds);
+}

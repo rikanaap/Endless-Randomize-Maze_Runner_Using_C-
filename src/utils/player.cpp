@@ -254,13 +254,17 @@ void controlPlayer(char input, GameConfig config)
         choosenGame = config.fastTyping ? 1 : 2;
         switch (choosenGame)
         {
-        case 1:
+        case 1: {
             fastTyping(randomWord, 4);
-            break;
+            break; }
+        case 2: {
+            auto [randomWords, _] = wordsConvert("src/constant/kata_baku.csv", false);
+            char selectedWords[100];
+            strncpy(selectedWords, randomWords.c_str(), sizeof(selectedWords));
+            selectedWords[sizeof(selectedWords) - 1] = '\0'; // Safety null-termination
 
-        case 2:
-            char accuracyWords[] = "makan nasi gagak geprek pias";
-            runMonkeytype(accuracyWords);
+            runMonkeytype(selectedWords);
+
             break;
         }
         validInput = true;
