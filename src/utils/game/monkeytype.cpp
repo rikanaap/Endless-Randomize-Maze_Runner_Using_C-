@@ -58,11 +58,12 @@ int calculatePoints(int totalIncorrect, double duration_seconds) {
 void runMonkeytype(char* selectedWord) {
     int totalIncorrect = 0;
     int totalChars = strlen(selectedWord);
-    
+
     createQueue();
     resetQueue(selectedWord);
 
-    cout << "Ketik kalimat ini: " << "\033[32m" << selectedWord << "\033[0m" << endl; counting123();
+    cout << "Ketik kalimat ini: " << "\033[32m" << selectedWord << "\033[0m" << endl;
+    counting123();
     cout << "\n> ";
 
     auto start = high_resolution_clock::now();
@@ -83,23 +84,41 @@ void runMonkeytype(char* selectedWord) {
     auto duration = duration_cast<milliseconds>(end - start);
     double duration_seconds = duration.count() / 1000.0;
 
-    int points = calculatePoints(totalIncorrect, duration_seconds);
+    int charCount = 0;
+    for (int i = 0; selectedWord[i] != '\0'; ++i) {
+        if (selectedWord[i] != ' ') {
+            charCount++;
+        }
+    }
+
+    int maxPoints;
+    if (charCount < 20) maxPoints = 3;
+    else if (charCount < 30) maxPoints = 5;
+    else if (charCount < 40) maxPoints = 7;
+    else maxPoints = 10;
+
+    double typoPenalty = totalIncorrect * 0.7;
+    double timePenalty = duration_seconds / 10.0;
+
+    int points = maxPoints - round(typoPenalty + timePenalty);
+    if (points < 0) points = 0;
+
     float enemyMove = (float)totalIncorrect / 2.0f;
 
     cout << "\n\nWaktu yang dibutuhkan: " << duration_seconds << " detik" << endl;
-    if (totalIncorrect > 0) { 
-        cout << "Total typo: " << totalIncorrect << endl; 
+    if (totalIncorrect > 0) {
+        cout << "Total typo: " << totalIncorrect << endl;
     }
-    
+
     addPlayerPoint(points);
     moveEnemy(enemyMove);
 
-    if(points > 0) {
+    if (points > 0) {
         cout << "🪙  Kamu mendapatkan " << points << " poin 🍻🍻" << endl;
     }
-    if(enemyMove > 0) {
+    if (enemyMove > 0) {
         cout << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️" << endl;
     }
 
-    wait(5000);
+    wait(4000);
 }
