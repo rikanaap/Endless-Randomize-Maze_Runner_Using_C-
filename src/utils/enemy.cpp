@@ -160,6 +160,10 @@ void searchUser()
 
 void moveEnemy( int loopFor = 1)
 {
+    if (enemyPos.first < 0 || enemyPos.second < 0) {
+        return;
+    }
+
     for (int i = 0; i < loopFor; ++i)
     {
         if (isMoveEmpty())
