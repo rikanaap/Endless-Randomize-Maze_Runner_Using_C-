@@ -21,7 +21,7 @@ void addPlayerPoint(int point)
 bool removePlayerPoint(int point)
 {
     if (playerPoint < point)
-        return true;
+        return false;
     int temp = playerPoint;
     temp -= point;
     if (temp < 0)

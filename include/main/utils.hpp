@@ -10,6 +10,7 @@ int randomInt(int min, int max);
 void wait(int seconds);
 void counting123();
 string generateRandomWord();
+string ChartoFont(char c);
 pair<string, int> wordsConvert();
 
 #endif

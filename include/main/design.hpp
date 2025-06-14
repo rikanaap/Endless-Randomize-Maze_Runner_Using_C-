@@ -9,5 +9,6 @@ void menuLevel(GameConfig config);
 void tampilanMenang();
 void tampilanKalah();
 void keyboard();
+void isiUsername();
 
 #endif

@@ -159,7 +159,7 @@ void searchUser()
     }
 }
 
-void moveEnemy( int loopFor = 1)
+void moveEnemy(int loopFor = 1)
 {
     if (enemyPos.first < 0 || enemyPos.second < 0) {
         return;
@@ -167,10 +167,8 @@ void moveEnemy( int loopFor = 1)
 
     for (int i = 0; i < loopFor; ++i)
     {
-        if (isMoveEmpty())
-        {
-            searchUser();
-        }
+
+        searchUser();
 
         char direction = firstMove();
         switch (direction)

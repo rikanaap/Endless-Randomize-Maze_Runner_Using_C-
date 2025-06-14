@@ -1,6 +1,7 @@
 #include <iostream>
 #include "main\design.hpp"
 #include "main\utils.hpp"
+#include "var\global.hpp"
 using namespace std;
 
 void menuUtama()
@@ -13,6 +14,7 @@ void menuUtama()
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << "                  " << endl;
             cout << "                  🏃 MAZE RUNNER - MENU UTAMA 🏃" << endl;
+            cout << "                  👋 Selamat datang " << currentUsername << endl;
             cout << "                  " << endl;
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << endl;

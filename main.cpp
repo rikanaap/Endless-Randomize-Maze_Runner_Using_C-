@@ -2,6 +2,7 @@
 #include "main\utils.hpp"
 #include "main\design.hpp"
 #include "var\env.hpp"
+#include "main\leaderboard.hpp"
 
 int main()
 {
@@ -9,6 +10,7 @@ int main()
     SetConsoleOutputCP(CP_UTF8);
 #endif
     keyboard();
+    isiUsername();
     clearScreen();
     menuUtama();
 }

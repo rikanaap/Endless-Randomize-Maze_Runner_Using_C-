@@ -17,3 +17,5 @@ letterQueue word;
 
 bool playerWin = false;
 bool enemyWin = false;
+
+string currentUsername = "";

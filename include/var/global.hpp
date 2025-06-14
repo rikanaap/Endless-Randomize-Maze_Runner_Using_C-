@@ -18,4 +18,6 @@ extern vector<Dir> directions;
 extern enemyQueue enemyMovement;
 extern letterQueue word;
 
+extern string currentUsername;
+
 //? Extern = diisi si variablenya itu di file lain

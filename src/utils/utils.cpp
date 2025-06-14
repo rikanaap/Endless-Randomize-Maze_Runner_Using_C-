@@ -81,3 +81,34 @@ pair<string, int> wordsConvert() {
     int estimatedSeconds = estimatedSecond(selectedWords);
     return make_pair(selectedWords, estimatedSeconds);
 }
+
+string ChartoFont(char c) {
+    switch (c) {
+        case 'A': return "𝓐";
+        case 'B': return "𝓑";
+        case 'C': return "𝓒";
+        case 'D': return "𝓓";
+        case 'E': return "𝓔";
+        case 'F': return "𝓕";
+        case 'G': return "𝓖";
+        case 'H': return "𝓗";
+        case 'I': return "𝓘";
+        case 'J': return "𝓙";
+        case 'K': return "𝓚";
+        case 'L': return "𝓛";
+        case 'M': return "𝓜";
+        case 'N': return "𝓝";
+        case 'O': return "𝓞";
+        case 'P': return "𝓟";
+        case 'R': return "𝓡";
+        case 'S': return "𝓢";
+        case 'T': return "𝓣";
+        case 'U': return "𝓤";
+        case 'V': return "𝓥";
+        case 'W': return "𝓦";
+        case 'X': return "𝓧";
+        case 'Y': return "𝓨";
+        case 'Z': return "𝓩";
+        default:  return string(1, c); // return the original char if not matched
+    }
+}

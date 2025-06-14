@@ -9,7 +9,7 @@ void tampilanKalah()
     cout << "\n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
     cout << "                     \n";
-    cout << "                     GAME OVER ☠️                     \n";
+    cout << "                 GAME OVER ☠️                     \n";
     cout << "                     \n";
     cout << "⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n";
     cout << "\n";
