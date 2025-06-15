@@ -18,6 +18,8 @@
 #include <thread>
 #include <fstream>
 #include <random>
+#include <fstream>
+#include <iomanip>
 
 #ifdef _WIN32
 #include <windows.h>

@@ -1,5 +1,6 @@
 #include "package/package.hpp"
 #include "var/global.hpp"
+#include "main\utils.hpp"
 
 const string filePath = "src/constant/leaderboard.csv";
 
@@ -16,6 +17,7 @@ void insertLeaderboard(float point) {
 }
 
 void readLeaderboard() {
+    clearScreen();
     ifstream file(filePath);
     if (!file.is_open()) {
         cerr << "Error opening file for reading.\n";
@@ -23,6 +25,14 @@ void readLeaderboard() {
     }
 
     string line;
+    int rank = 1;
+
+    // Header
+    cout << left << setw(5) << "No"
+         << setw(30) << "Nama"
+         << "Skor" << endl;
+    cout << string(45, '-') << endl;
+
     while (getline(file, line)) {
         stringstream ss(line);
         string name, point;
@@ -30,8 +40,11 @@ void readLeaderboard() {
         getline(ss, name, ',');
         getline(ss, point, ',');
 
-        cout << "Name: " << name << ", Point: " << point;
+        cout << left << setw(5) << rank++
+             << setw(30) << name << " | "<< point << endl;
     }
 
     file.close();
+    getChar();
+    clearScreen();
 }

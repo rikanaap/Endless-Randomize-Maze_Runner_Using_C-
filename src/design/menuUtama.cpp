@@ -2,6 +2,7 @@
 #include "main\design.hpp"
 #include "main\utils.hpp"
 #include "var\global.hpp"
+#include "main\leaderboard.hpp"
 using namespace std;
 
 void menuUtama()
@@ -10,7 +11,8 @@ void menuUtama()
 
     while (true)
     {
-        while(true){
+        while (true)
+        {
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << "                  " << endl;
             cout << "                  🏃 MAZE RUNNER - MENU UTAMA 🏃" << endl;
@@ -19,6 +21,7 @@ void menuUtama()
             cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
             cout << endl;
             cout << "   F | Mulai Permainan 🎮" << endl;
+            cout << "   H | Lihat Leaderboard " << endl;
             cout << endl;
             cout << "   Backspace | Keluar ⛔" << endl;
             cout << endl;
@@ -35,16 +38,23 @@ void menuUtama()
                 clearScreen();
                 chooseMode();
                 break;
+            case 'h':
+                cout << "\n⏩ Memuat Leaderboard\n";
+                clearScreen();
+                readLeaderboard();
+                break;
             case 8:
                 cout << "\nTerima kasih telah bermain. Sampai jumpa!😎👋\n";
-                wait(500); exit(0);
+                wait(500);
+                exit(0);
                 break;
             default:
                 cout << "\n\nPilihan tidak valid. 😡 Silakan coba lagi.";
-                wait(500); clearScreen();
+                wait(500);
+                clearScreen();
                 break;
             };
-            
+
             cout << endl;
         }
     }
