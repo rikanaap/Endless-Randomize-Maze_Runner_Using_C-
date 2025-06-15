@@ -18,6 +18,10 @@ void infoFast()
     cout << "   ❌ Setiap kesalahan akan mendekatkan musuh!" << endl;
     cout << "   🚶‍♂️ Musuh maju 1 langkah per kesalahan..." << endl;
     cout << endl;
+    cout << "   🎯 Minimal 3 poin dibutuhkan untuk bisa bermain!" << endl;
+    cout << "   🔫 Menembak musuh menghabiskan 6 poin" << endl;
+    cout << "   🧍 Bergerak/menghindar membutuhkan 1 poin" << endl;
+    cout << endl;
     cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
     cout << endl;
     cout << "Tekan tombol apa saja untuk mulai...";
@@ -40,6 +44,10 @@ void infoAccuracy()
     cout << "   ✅ Poin maksimal berdasarkan panjang kalimat" << endl;
     cout << "   ❌ Typo dan waktu = pengurang poin dan musuh maju!" << endl;
     cout << "   🚶‍♂️ Musuh maju 0.5 langkah per typo..." << endl;
+    cout << endl;
+    cout << "   🎯 Minimal 3 poin dibutuhkan untuk bisa bermain!" << endl;
+    cout << "   🔫 Menembak musuh menghabiskan 6 poin" << endl;
+    cout << "   🧍 Bergerak/menghindar membutuhkan 1 poin" << endl;
     cout << endl;
     cout << "◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽◾◽" << endl;
     cout << endl;
