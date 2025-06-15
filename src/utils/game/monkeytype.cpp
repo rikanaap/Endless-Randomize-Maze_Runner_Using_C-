@@ -63,6 +63,7 @@ void runMonkeytype(char* selectedWord) {
     resetQueue(selectedWord);
 
     cout << "Ketik kalimat ini: " << "\033[32m" << selectedWord << "\033[0m" << endl;
+    cout << "\nTekan Enter jika sudah selesai mengetik";
     counting123();
     cout << "\n> ";
 
@@ -71,6 +72,11 @@ void runMonkeytype(char* selectedWord) {
     while (!isCharEmpty()) {
         char expected = getFirstChar();
         char input = _getch();
+
+        if (input == '\r') {
+        cout << "\nKamu menekan Enter untuk mengakhiri lebih awal.\n";
+        break;
+    }
 
         if (input == expected) {
             cout << "\033[32m" << input << "\033[0m";

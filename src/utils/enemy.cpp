@@ -167,7 +167,6 @@ void moveEnemy(int loopFor = 1)
 
     for (int i = 0; i < loopFor; ++i)
     {
-
         searchUser();
 
         char direction = firstMove();
@@ -175,15 +174,27 @@ void moveEnemy(int loopFor = 1)
         {
         case 'U':
             moveEnemyUp(enemyPos);
+            printMap();
+            wait(500);
+            clearScreen();
             break;
         case 'D':
             moveEnemyDown(enemyPos);
+            printMap();
+            wait(500);
+            clearScreen();
             break;
         case 'L':
             moveEnemyLeft(enemyPos);
+            printMap();
+            wait(500);
+            clearScreen();
             break;
         case 'R':
             moveEnemyRight(enemyPos);
+            printMap();
+            wait(500);
+            clearScreen();
             break;
         default:
             return;

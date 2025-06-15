@@ -50,8 +50,7 @@ void menuUtama()
                 break;
             default:
                 cout << "\n\nPilihan tidak valid. 😡 Silakan coba lagi.";
-                wait(500);
-                clearScreen();
+                wait(1000); clearScreen();
                 break;
             };
 
