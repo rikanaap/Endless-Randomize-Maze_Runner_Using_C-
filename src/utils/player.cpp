@@ -240,6 +240,7 @@ void printTutorial()
     cout << "\n🪙 Point: " << playerPoint;
     if (playerPoint < 4)
         cout << "\n\n💯 Tekan 'G' untuk memainkan game dan dapatkan poin! 💯";
+    cout << "\n\n 😯 : Player \n 😈 : musuh \n 🏁 : Finish";
     cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]";
 }
 
