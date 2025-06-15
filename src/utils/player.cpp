@@ -91,6 +91,7 @@ void shootPlayerUp(pair<int, int> position, bool first = true)
         v->shoot = true;
     removeEnemy(v);
     printMap();
+    wait(200);
     clearScreen();
     v->shoot = false;
     if (v->up && v->weightUp > 0)
@@ -106,6 +107,7 @@ void shootPlayerDown(pair<int, int> position, bool first = true)
         v->shoot = true;
     removeEnemy(v);
     printMap();
+    wait(500);
     clearScreen();
     v->shoot = false;
     if (v->down && v->weightDown > 0)
@@ -121,6 +123,7 @@ void shootPlayerLeft(pair<int, int> position, bool first = true)
         v->shoot = true;
     removeEnemy(v);
     printMap();
+    wait(500);
     clearScreen();
     v->shoot = false;
     if (v->left && v->weightLeft > 0)
@@ -136,6 +139,7 @@ void shootPlayerRight(pair<int, int> position, bool first = true)
         v->shoot = true;
     removeEnemy(v);
     printMap();
+    wait(500);
     clearScreen();
     v->shoot = false;
     if (v->right && v->weightRight > 0)

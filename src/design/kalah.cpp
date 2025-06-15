@@ -23,8 +23,8 @@ void tampilanKalah()
         clearScreen();
         break;
     default:
-        cout << "Pilihan tidak valid.\n";
-        wait(500);
+        cout << "\n\nPilihan tidak valid. 😡 Silakan coba lagi.";
+        wait(1000);
         tampilanKalah();
         break;
     }

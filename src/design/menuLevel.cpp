@@ -65,7 +65,7 @@ void menuLevel(GameConfig config)
             return;
         default:
             cout << "\nPilihan tidak valid. 😡 Silakan coba lagi.";
-            wait(500); clearScreen();
+            wait(1000); clearScreen();
             break;
         }
         clearScreen();
