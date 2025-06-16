@@ -60,8 +60,11 @@ string getInputWithTimeout(int seconds)
 
 void fastTyping(string target, int second)
 {
-    cout << "Ketik kata ini: " << "\033[32m" << target << "\033[0m" << endl;;
+    cout << "Ketik kata ini: " << "\033[32m" << target << "\033[0m" << endl;
+
+    auto startTime = high_resolution_clock::now();
     string userInput = getInputWithTimeout(second);
+    auto endTime = high_resolution_clock::now();
 
     vector<string> targetWords = splitWords(target);
     vector<string> userWords = splitWords(userInput);
@@ -76,20 +79,25 @@ void fastTyping(string target, int second)
         if (targetWords[i] == userWords[i]) point++;
         else enemyMove += 1;
     }
-    
+
     enemyMove = enemyMove / 2;
 
     addPlayerPoint(point);
     addLeaderboardPoint(2 * point);
     if(enemyMove >= 1) moveEnemy(enemyMove, true);
-    
+
     clearScreen();
     printMap();
-    printTutorial();
-    if(point > 0) cout << endl << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
-    if(enemyMove > 0) cout << endl << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
+
+    if(point > 0)
+        cout << endl << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
+    if(enemyMove > 0)
+        cout << endl << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
+
+    auto duration = duration_cast<milliseconds>(endTime - startTime);
+    cout << endl << "⏱️  Waktu yang kamu butuhkan: " << (duration.count() / 1000.0) << " detik" << endl;
+
     DWORD start = GetTickCount();
-    
     while ((GetTickCount() - start) < (4 * 1000))
     {
         if (_kbhit()) _getch();
