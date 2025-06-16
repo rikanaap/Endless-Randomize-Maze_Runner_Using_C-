@@ -105,6 +105,7 @@ void shootPlayerUp(pair<int, int> position, bool first = true)
     if (!first)
         v->shoot = true;
     removeEnemy(v);
+    cout << endl;
     printMap();
     wait(200);
     clearScreen();
@@ -119,8 +120,9 @@ void shootPlayerDown(pair<int, int> position, bool first = true)
 {
     Vertex *v = runningMap[position.first][position.second];
     if (!first)
-        v->shoot = true;
+    v->shoot = true;
     removeEnemy(v);
+    cout << endl;
     printMap();
     wait(500);
     clearScreen();
@@ -135,8 +137,9 @@ void shootPlayerLeft(pair<int, int> position, bool first = true)
 {
     Vertex *v = runningMap[position.first][position.second];
     if (!first)
-        v->shoot = true;
+    v->shoot = true;
     removeEnemy(v);
+    cout << endl;
     printMap();
     wait(500);
     clearScreen();
@@ -151,8 +154,9 @@ void shootPlayerRight(pair<int, int> position, bool first = true)
 {
     Vertex *v = runningMap[position.first][position.second];
     if (!first)
-        v->shoot = true;
+    v->shoot = true;
     removeEnemy(v);
+    cout << endl;
     printMap();
     wait(500);
     clearScreen();
