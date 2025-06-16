@@ -79,10 +79,11 @@ void fastTyping(string target, int second)
     enemyMove = enemyMove / 2;
 
     addPlayerPoint(point);
-    moveEnemy(enemyMove);
+    addLeaderboardPoint(2 * point);
+    moveEnemy(enemyMove, true);
     
-    if(point > 0) cout << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
-    if(enemyMove > 0) cout << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
+    if(point > 0) cout << endl << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
+    if(enemyMove > 0) cout << endl << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
     DWORD start = GetTickCount();
     
     while ((GetTickCount() - start) < (4 * 1000))

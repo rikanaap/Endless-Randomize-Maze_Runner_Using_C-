@@ -3,6 +3,7 @@
 #include "main\map.hpp"
 #include "main\move.hpp"
 #include "main\utils.hpp"
+#include "main\player.hpp"
 
 using namespace std;
 
@@ -159,7 +160,7 @@ void searchUser()
     }
 }
 
-void moveEnemy(int loopFor = 1)
+void moveEnemy(int loopFor = 1, bool giveWait = false)
 {
     if (enemyPos.first < 0 || enemyPos.second < 0) {
         return;
@@ -175,30 +176,36 @@ void moveEnemy(int loopFor = 1)
         case 'U':
             moveEnemyUp(enemyPos);
             printMap();
-            wait(500);
+            printTutorial();
+            if (giveWait) {wait(500);};
             clearScreen();
             break;
-        case 'D':
+            case 'D':
             moveEnemyDown(enemyPos);
             printMap();
-            wait(500);
+            printTutorial();
+            if (giveWait) {wait(500);};
             clearScreen();
             break;
-        case 'L':
+            case 'L':
             moveEnemyLeft(enemyPos);
             printMap();
-            wait(500);
+            printTutorial();
+            if (giveWait) {wait(500);};
             clearScreen();
             break;
-        case 'R':
+            case 'R':
             moveEnemyRight(enemyPos);
             printMap();
-            wait(500);
+            printTutorial();
+            if (giveWait) {wait(500);};
             clearScreen();
             break;
-        default:
+            default:
             return;
         }
         removeMove();
     }
+    printMap();
+    printTutorial();
 }

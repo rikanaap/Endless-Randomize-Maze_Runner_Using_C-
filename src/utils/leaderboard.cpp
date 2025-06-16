@@ -4,16 +4,44 @@
 
 const string filePath = "src/constant/leaderboard.csv";
 
+struct LeaderboardEntry {
+    string username;
+    float point;
+};
+
+bool compareEntries(const LeaderboardEntry &a, const LeaderboardEntry &b) {
+    return a.point > b.point;
+}
+
 void insertLeaderboard(float point) {
-    ofstream file(filePath, ios::app);
-    if (!file.is_open()) {
+    vector<LeaderboardEntry> leaderboard;
+
+    ifstream inFile(filePath);
+    string line;
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        string name, scoreStr;
+        if (getline(ss, name, ',') && getline(ss, scoreStr)) {
+            LeaderboardEntry entry = {name, stof(scoreStr)};
+            leaderboard.push_back(entry);
+        }
+    }
+    inFile.close();
+
+    leaderboard.push_back({currentUsername, point});
+    sort(leaderboard.begin(), leaderboard.end(), compareEntries);
+
+    ofstream outFile(filePath);
+    if (!outFile.is_open()) {
         cerr << "Error opening file for writing.\n";
         return;
     }
+    for (const auto& entry : leaderboard) {
+        outFile << entry.username << "," << entry.point << "\n";
+    }
+    outFile.close();
 
-    file << currentUsername << "," << point << "\n";
-    file.close();
-    cout << "Data inserted successfully.\n";
+    cout << "Leaderboard updated successfully.\n";
 }
 
 void readLeaderboard() {

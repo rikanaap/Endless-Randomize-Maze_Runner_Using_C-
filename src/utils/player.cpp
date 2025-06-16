@@ -5,8 +5,10 @@
 #include "var\global.hpp"
 #include "main\enemy.hpp"
 #include "main\game.hpp"
+#include "main\leaderboard.hpp"
 
 int playerPoint = 0;
+int leaderboardPoint = 1000;
 
 void addPlayerPoint(int point)
 {
@@ -18,6 +20,11 @@ void addPlayerPoint(int point)
     else
         playerPoint = temp;
 }
+void addLeaderboardPoint(int point) { leaderboardPoint += point; }
+void removeLeaderboardPoint(int point) { 
+    leaderboardPoint -= point;
+    if(leaderboardPoint < 0) leaderboardPoint = 0;
+  }
 bool removePlayerPoint(int point)
 {
     if (playerPoint < point)
@@ -32,14 +39,18 @@ bool removePlayerPoint(int point)
 
 void removeEnemy(Vertex *v)
 {
-    if (v->x == enemyPos.first && v->y == enemyPos.second)
+    if (v->x == enemyPos.first && v->y == enemyPos.second){
         enemyPos = {-1, -1};
+        addLeaderboardPoint(100);
+    }
 }
 
 void isPlayerWin(Vertex *nextVertex)
 {
-    if (nextVertex->endVertex)
+    if (nextVertex->endVertex){
         playerWin = true;
+        insertLeaderboard(leaderboardPoint);
+    } 
 }
 
 //? MOVE FUNCTION
@@ -51,6 +62,7 @@ void movePlayerUp(pair<int, int> &currentPos)
         isPlayerWin(v->up);
         currentPos.first -= 1;
     }
+    removeLeaderboardPoint(10);
 }
 
 void movePlayerDown(pair<int, int> &currentPos)
@@ -61,6 +73,7 @@ void movePlayerDown(pair<int, int> &currentPos)
         isPlayerWin(v->down);
         currentPos.first += 1;
     }
+    removeLeaderboardPoint(10);
 }
 
 void movePlayerLeft(pair<int, int> &currentPos)
@@ -71,6 +84,7 @@ void movePlayerLeft(pair<int, int> &currentPos)
         isPlayerWin(v->left);
         currentPos.second -= 1;
     }
+    removeLeaderboardPoint(10);
 }
 
 void movePlayerRight(pair<int, int> &currentPos)
@@ -81,6 +95,7 @@ void movePlayerRight(pair<int, int> &currentPos)
         isPlayerWin(v->right);
         currentPos.second += 1;
     }
+    removeLeaderboardPoint(10);
 }
 
 //?SHOOT FUNCTION
@@ -248,6 +263,10 @@ void printTutorial()
     cout << "\n\nMove with \n[w: up, s: down, a: left, d: right] \n\nShoot with \n[i: up, k: down, j: left, l: right]";
 }
 
+void countLeaderboardPoint(){
+
+}
+
 void controlPlayer(char input, GameConfig config)
 {
     int choosenGame = 0;
@@ -280,7 +299,7 @@ void controlPlayer(char input, GameConfig config)
         {
             movePlayerUp(currentPos);
             validInput = true;
-            moveEnemy(1);
+            moveEnemy(1, false);
         }
         break;
     case 's':
@@ -288,7 +307,7 @@ void controlPlayer(char input, GameConfig config)
         {
             movePlayerDown(currentPos);
             validInput = true;
-            moveEnemy(1);
+            moveEnemy(1, false);
         }
         break;
     case 'a':
@@ -296,7 +315,7 @@ void controlPlayer(char input, GameConfig config)
         {
             movePlayerLeft(currentPos);
             validInput = true;
-            moveEnemy(1);
+            moveEnemy(1, false);
         }
         break;
     case 'd':
@@ -304,7 +323,7 @@ void controlPlayer(char input, GameConfig config)
         {
             movePlayerRight(currentPos);
             validInput = true;
-            moveEnemy(1);
+            moveEnemy(1, false);
         }
         break;
     case 'i':
@@ -313,7 +332,7 @@ void controlPlayer(char input, GameConfig config)
             shootPlayerUp(currentPos);
             // meleeUp();
             validInput = true;
-            moveEnemy(3);
+            moveEnemy(3, false);
         }
         break;
     case 'k':
@@ -322,7 +341,7 @@ void controlPlayer(char input, GameConfig config)
             shootPlayerDown(currentPos);
             // meleeDown();
             validInput = true;
-            moveEnemy(3);
+            moveEnemy(3, false);
         }
         break;
     case 'j':
@@ -331,7 +350,7 @@ void controlPlayer(char input, GameConfig config)
             shootPlayerLeft(currentPos);
             // meleeLeft();
             validInput = true;
-            moveEnemy(3);
+            moveEnemy(3, false);
         }
         break;
     case 'l':
@@ -340,7 +359,7 @@ void controlPlayer(char input, GameConfig config)
             shootPlayerRight(currentPos);
             // meleeRight();
             validInput = true;
-            moveEnemy(3);
+            moveEnemy(3, false);
         }
         break;
     }

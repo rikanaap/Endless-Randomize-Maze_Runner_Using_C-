@@ -117,7 +117,8 @@ void runMonkeytype(char* selectedWord) {
     }
 
     addPlayerPoint(points);
-    moveEnemy(enemyMove);
+    addLeaderboardPoint(3 * points);
+    moveEnemy(enemyMove, true);
 
     if (points > 0) {
         cout << "🪙  Kamu mendapatkan " << points << " poin 🍻🍻" << endl;

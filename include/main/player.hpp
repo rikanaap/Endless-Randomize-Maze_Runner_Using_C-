@@ -7,5 +7,7 @@
 void controlPlayer( char input, GameConfig config);
 void printTutorial();
 void addPlayerPoint(int point);
+void addLeaderboardPoint(int point);
+void printTutorial();
 
 #endif
