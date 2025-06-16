@@ -4,6 +4,8 @@
 #include "main\game.hpp"
 #include "main\player.hpp"
 #include "main\enemy.hpp"
+#include "main\map.hpp"
+#include "main\player.hpp"
 
 void createQueue() {
     word.top = 0;
@@ -118,7 +120,11 @@ void runMonkeytype(char* selectedWord) {
 
     addPlayerPoint(points);
     addLeaderboardPoint(3 * points);
-    moveEnemy(enemyMove, true);
+    if(enemyMove >= 1) moveEnemy(enemyMove, true);
+
+    clearScreen();
+    printMap();
+    printTutorial();
 
     if (points > 0) {
         cout << "🪙  Kamu mendapatkan " << points << " poin 🍻🍻" << endl;
@@ -127,5 +133,5 @@ void runMonkeytype(char* selectedWord) {
         cout << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️" << endl;
     }
 
-    wait(4000);
+    wait(2000);
 }

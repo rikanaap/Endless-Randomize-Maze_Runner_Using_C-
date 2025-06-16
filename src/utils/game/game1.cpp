@@ -3,6 +3,7 @@
 #include "main\player.hpp"
 #include "main\enemy.hpp"
 #include "main\utils.hpp"
+#include "main\map.hpp"
 
 using namespace std;
 
@@ -80,8 +81,11 @@ void fastTyping(string target, int second)
 
     addPlayerPoint(point);
     addLeaderboardPoint(2 * point);
-    moveEnemy(enemyMove, true);
+    if(enemyMove >= 1) moveEnemy(enemyMove, true);
     
+    clearScreen();
+    printMap();
+    printTutorial();
     if(point > 0) cout << endl << "🪙  Kamu mendapatkan " << point << " poin🍻🍻" << endl;
     if(enemyMove > 0) cout << endl << "😈  Kesalahanmu adalah jalan ku, musuh mendekat " << enemyMove << " langkah🚶‍♂️🚶‍♂️";
     DWORD start = GetTickCount();

@@ -7,6 +7,7 @@ using namespace std;
 
 void menuUtama()
 {
+    clearScreen();
     char pilihan;
 
     while (true)
